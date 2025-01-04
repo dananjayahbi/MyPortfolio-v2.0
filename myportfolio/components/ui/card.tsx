@@ -1,58 +1,76 @@
-'use client';
-import Image from 'next/image';
-import Background from '@/public/images/background.jpg';
-import me from '@/public/images/me.png';
+import * as React from "react"
 
-const Card: React.FC = () => {
-  return (
-    <div className="relative w-[450px] h-[600px] bg-gray-900 text-white rounded-xl overflow-hidden shadow-lg">
-      {/* Background Image Section */}
-      <div className="relative h-72">
-        <Image
-          src={Background}
-          alt="Background"
-          fill
-          className="object-cover"
-        />
-      </div>
+import { cn } from "@/lib/utils"
 
-      {/* Profile Section */}
-      <div className="relative -mt-16 flex flex-col items-center">
-        <div className="w-32 h-32 border-4 border-gray-900 rounded-full overflow-hidden">
-          <Image
-            src={me}
-            alt="Profile picture"
-            width={128}
-            height={128}
-            className="object-cover"
-          />
-        </div>
-        <h2 className="text-2xl font-bold mt-4">Isuru Dananjaya</h2>
-        <p className="text-yellow-400">Full-Stack Developer</p>
+const Card = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn(
+      "rounded-xl border bg-card text-card-foreground shadow",
+      className
+    )}
+    {...props}
+  />
+))
+Card.displayName = "Card"
 
-        {/* Social Icons Section */}
-        <div className="flex gap-4 mt-4 text-gray-300 text-xl">
-          <a href="#" aria-label="Instagram" className="hover:text-white">
-            📷
-          </a>
-          <a href="#" aria-label="GitHub" className="hover:text-white">
-            💻
-          </a>
-          <a href="#" aria-label="LinkedIn" className="hover:text-white">
-            🔗
-          </a>
-        </div>
+const CardHeader = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn("flex flex-col space-y-1.5 p-6", className)}
+    {...props}
+  />
+))
+CardHeader.displayName = "CardHeader"
 
-        {/* Buttons Section */}
-        <div className="flex justify-around w-full mt-6 border-t border-gray-700 py-4">
-          <button className="text-gray-300 hover:text-white">
-            Download CV
-          </button>
-          <button className="text-gray-300 hover:text-white">Contact Me</button>
-        </div>
-      </div>
-    </div>
-  );
-};
+const CardTitle = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn("font-semibold leading-none tracking-tight", className)}
+    {...props}
+  />
+))
+CardTitle.displayName = "CardTitle"
 
-export default Card;
+const CardDescription = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn("text-sm text-muted-foreground", className)}
+    {...props}
+  />
+))
+CardDescription.displayName = "CardDescription"
+
+const CardContent = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div ref={ref} className={cn("p-6 pt-0", className)} {...props} />
+))
+CardContent.displayName = "CardContent"
+
+const CardFooter = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn("flex items-center p-6 pt-0", className)}
+    {...props}
+  />
+))
+CardFooter.displayName = "CardFooter"
+
+export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent }
