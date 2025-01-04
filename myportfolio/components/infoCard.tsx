@@ -19,7 +19,7 @@ const InfoCard: React.FC = () => {
       ></div>
 
       {/* Main Card */}
-      <ShadcnCard className="relative w-[450px] h-[600px] bg-[#222222] text-white rounded-xl overflow-hidden shadow-lg z-10">
+      <ShadcnCard className="relative w-[450px] h-[600px] bg-[#222222] text-white rounded-xl overflow-hidden border-none z-10">
         {/* Background Image Section */}
         <div className="relative h-72 w-full">
           <Image
