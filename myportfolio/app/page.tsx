@@ -1,13 +1,30 @@
 'use client';
-
-import { useRouter } from 'next/navigation';
-import Card from "@/components/ui/card";
+import { useState, useEffect } from 'react';
+import { Spin } from 'antd';
+import DesktopPage from './desktop-page/page';
+import MobilePage from './mobile-page/page';
 
 export default function HomePage() {
+  const [isLargeScreen, setIsLargeScreen] = useState<boolean | null>(null);
 
-  return (
-    <div className="flex flex-col items-center justify-center h-screen">
-      <Card/>
-    </div>
-  );
+  useEffect(() => {
+    const handleResize = () => {
+      setIsLargeScreen(window.innerWidth > 1366);
+    };
+
+    handleResize(); 
+    window.addEventListener('resize', handleResize); 
+
+    return () => window.removeEventListener('resize', handleResize); 
+  }, []);
+
+  if (isLargeScreen === null) {
+    return (
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+        <Spin size="large" />
+      </div>
+    );
+  }
+
+  return isLargeScreen ? <DesktopPage /> : <MobilePage />;
 }
