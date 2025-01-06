@@ -3,16 +3,23 @@ import { NextResponse } from 'next/server';
 
 const prisma = new PrismaClient();
 
-//GET: Fetch an Experimental Project by ID (Fixed for Next.js 15)
-export async function GET(request: Request, context: { params: Promise<{ id: string }> }) {
-    const { id } = await context.params;
+/**
+ * 📌 GET: Fetch a Single Experimental Project by ID
+ */
+export async function GET(request: Request, { params }: { params: { id: string } }) {
+    const { id } = params;
 
-    // Check if project exists
-    const project = await prisma.experimentalProject.findUnique({ where: { id } });
+    try {
+        const project = await prisma.experimentalProject.findUnique({
+            where: { id }
+        });
 
-    if (!project) {
-        return NextResponse.json({ message: "Project not found" }, { status: 404 });
+        if (!project) {
+            return NextResponse.json({ message: "Project not found" }, { status: 404 });
+        }
+
+        return NextResponse.json(project);
+    } catch (error) {
+        return NextResponse.json({ message: "Failed to fetch project" }, { status: 500 });
     }
-
-    return NextResponse.json(project);
 }
