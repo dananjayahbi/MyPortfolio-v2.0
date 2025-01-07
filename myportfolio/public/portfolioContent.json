@@ -1,0 +1,65 @@
+{
+  "author": {
+    "name": "John Doe",
+    "post": "Web Developer"
+  },
+  "aboutMe": {
+    "title": "About Me",
+    "description": "Updated portfolio content with new details."
+  },
+  "skills": {
+    "subTitles": [
+      {
+        "title": "JavaScript",
+        "description": "Mastering ES6+"
+      },
+      {
+        "title": "python12",
+        "description": "Updated to Advanced python Developer fds222"
+      },
+      {
+        "title": "JavaScript1",
+        "description": "Updated to Advanced JavaScript Developer fds1"
+      }
+    ]
+  },
+  "currentlyIAm": {
+    "title": "Currently I Am",
+    "texts": [
+      "Working on a new project",
+      "Exploring TypeScript2"
+    ]
+  },
+  "myHobbies": {
+    "title": "My Hobbies",
+    "texts": [
+      "Coding",
+      "Reading"
+    ]
+  },
+  "funFacts": {
+    "title": "Fun Facts",
+    "texts": [
+      "I love coding challenges!"
+    ]
+  },
+  "experience": {
+    "title": "Experience",
+    "texts": [
+      "3 Years in Web Development"
+    ]
+  },
+  "education": {
+    "title": "Education",
+    "texts": [
+      "B.Sc. in Computer Science"
+    ]
+  },
+  "contact": {
+    "email": "upd@example.com",
+    "phone": "123-987-6543",
+    "linkedin": "https://linkedin.com/in/newprofile",
+    "github": "https://github.com/johndoe",
+    "facebook": "https://facebook.com/johndoe"
+  }
+}
