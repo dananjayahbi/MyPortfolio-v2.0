@@ -17,6 +17,7 @@ export async function GET() {
         name: 'John Doe',
         post: 'Web Developer',
         dob: '01-01-1990',
+        age: 31,
         freelance: 'Available',
         residence: 'LK',
         email: 'test@test.com',

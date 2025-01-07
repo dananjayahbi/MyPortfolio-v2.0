@@ -3,6 +3,7 @@
     "name": "John Doe",
     "post": "Web Developer",
     "dob": "01-01-1990",
+    "age": 31,
     "freelance": "Available",
     "residence": "LK",
     "email": "test@test.com",
@@ -17,8 +18,85 @@
     "title": "Skills",
     "subTitles": [
       {
-        "title": "JavaScript",
-        "description": "Experienced in JS development"
+        "title": "Frontend",
+        "technologies": [
+          {
+            "name": "React",
+            "image": "https://img.icons8.com/?size=100&id=asWSSTBrDlTW&format=png&color=000000"
+          },
+          {
+            "name": "Next.js",
+            "image": "https://images-cdn.openxcell.com/wp-content/uploads/2024/07/24154156/dango-inner-2.webp"
+          },
+          {
+            "name": "HTML",
+            "image": "https://img.icons8.com/?size=100&id=20909&format=png&color=000000"
+          },
+          {
+            "name": "Vue.js",
+            "image": "https://img.icons8.com/?size=100&id=eETV3RNHVrWA&format=png&color=000000"
+          }
+        ]
+      },
+      {
+        "title": "Backend",
+        "technologies": [
+          {
+            "name": "Node.js",
+            "image": "https://img.icons8.com/?size=100&id=54087&format=png&color=000000"
+          },
+          {
+            "name": "Express",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnDneBGnQL7E9hZDwztRO1GfQcCj1FqRrhBw&s"
+          },
+          {
+            "name": "MongoDB",
+            "image": "https://img.icons8.com/?size=100&id=bosfpvRzNOG8&format=png&color=000000"
+          },
+          {
+            "name": "GraphQL",
+            "image": "https://img.icons8.com/?size=100&id=KRA1PoZgRrca&format=png&color=000000"
+          }
+        ]
+      },
+      {
+        "title": "Database management",
+        "technologies": [
+          {
+            "name": "MongoDB",
+            "image": "https://img.icons8.com/?size=100&id=bosfpvRzNOG8&format=png&color=000000"
+          },
+          {
+            "name": "MySQL",
+            "image": "https://img.icons8.com/?size=100&id=rgPSE6nAB766&format=png&color=000000"
+          }
+        ]
+      },
+      {
+        "title": "Version Control",
+        "technologies": [
+          {
+            "name": "Git",
+            "image": "https://img.icons8.com/?size=100&id=20906&format=png&color=000000"
+          }
+        ]
+      },
+      {
+        "title": "Others",
+        "technologies": [
+          {
+            "name": "TypeScript",
+            "image": "https://img.icons8.com/?size=100&id=uJM6fQYqDaZK&format=png&color=000000"
+          },
+          {
+            "name": "SASS",
+            "image": "https://img.icons8.com/?size=100&id=NaQGFHVLR7a8&format=png&color=000000"
+          },
+          {
+            "name": "REST API",
+            "image": "https://img.icons8.com/?size=100&id=45057&format=png&color=000000"
+          }
+        ]
       }
     ]
   },
@@ -56,7 +134,7 @@
   },
   "contact": {
     "email": "johndoe@example.com",
-    "phone": "123-456-7890",
+    "phone": "123-987-6543",
     "linkedin": "https://linkedin.com/in/johndoe",
     "github": "https://github.com/johndoe",
     "facebook": "https://facebook.com/johndoe"
