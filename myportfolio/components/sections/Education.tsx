@@ -2,11 +2,18 @@
 import React from 'react';
 
 const Education = () => {
-  return (
-    <div className="text-white leading-relaxed space-y-4">
-      🎓 <strong>Currently an undergraduate student</strong> at SLIIT University pursuing a degree in Information Technology.
-    </div>
-  );
+    const content = JSON.parse(sessionStorage.getItem('content') || '{}');
+    const education = content.education || {};
+
+    return (
+        <div className="text-white leading-relaxed space-y-4">
+            <ul className="list-disc pl-5 space-y-3">
+                {education.texts?.map((item: string, index: number) => (
+                    <li key={index}>{item}</li>
+                ))}
+            </ul>
+        </div>
+    );
 };
 
 export default Education;

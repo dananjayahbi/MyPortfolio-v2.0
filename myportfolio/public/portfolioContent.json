@@ -1,33 +1,32 @@
 {
   "author": {
     "name": "John Doe",
-    "post": "Web Developer"
+    "post": "Web Developer",
+    "dob": "01-01-1990",
+    "freelance": "Available",
+    "residence": "LK",
+    "email": "test@test.com",
+    "phone": "123-456-7890",
+    "myStatus": "I'm a passionate web developer."
   },
   "aboutMe": {
     "title": "About Me",
-    "description": "Updated portfolio content with new details."
+    "description": "A passionate web developer."
   },
   "skills": {
+    "title": "Skills",
     "subTitles": [
       {
         "title": "JavaScript",
-        "description": "Mastering ES6+"
-      },
-      {
-        "title": "python12",
-        "description": "Updated to Advanced python Developer fds222"
-      },
-      {
-        "title": "JavaScript1",
-        "description": "Updated to Advanced JavaScript Developer fds1"
+        "description": "Experienced in JS development"
       }
     ]
   },
   "currentlyIAm": {
     "title": "Currently I Am",
     "texts": [
-      "Working on a new project",
-      "Exploring TypeScript2"
+      "Learning TypeScript",
+      "Building Projects"
     ]
   },
   "myHobbies": {
@@ -56,9 +55,9 @@
     ]
   },
   "contact": {
-    "email": "upd@example.com",
-    "phone": "123-987-6543",
-    "linkedin": "https://linkedin.com/in/newprofile",
+    "email": "johndoe@example.com",
+    "phone": "123-456-7890",
+    "linkedin": "https://linkedin.com/in/johndoe",
     "github": "https://github.com/johndoe",
     "facebook": "https://facebook.com/johndoe"
   }
