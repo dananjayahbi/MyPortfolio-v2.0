@@ -103,33 +103,53 @@
   "currentlyIAm": {
     "title": "Currently I Am",
     "texts": [
-      "Learning TypeScript",
-      "Building Projects"
+      "Learning TypeScript Learning TypeScript Learning TypeScript Learning TypeScript",
+      "Building Projects",
+      "Looking for a job",
+      "Freelancing",
+      "Working on Open Source Projects",
+      "Working on my Portfolio",
+      "Working on my Blog",
+      "Working on my YouTube Channel"
     ]
   },
   "myHobbies": {
     "title": "My Hobbies",
     "texts": [
       "Coding",
-      "Reading"
+      "Reading",
+      "Watching Movies",
+      "Playing Video Games",
+      "Listening to Music",
+      "Traveling",
+      "Photography"
     ]
   },
   "funFacts": {
     "title": "Fun Facts",
     "texts": [
-      "I love coding challenges!"
+      "I love coding challenges!",
+      "I love to learn new technologies!",
+      "I love to build projects!",
+      "I love to help others!",
+      "I love to share my knowledge!"
     ]
   },
   "experience": {
     "title": "Experience",
     "texts": [
-      "3 Years in Web Development"
+      "3 Years in Web Development",
+      "1 Year in Mobile Development",
+      "1 Year in Game Development",
+      "1 Year in Desktop Developmentfd"
     ]
   },
   "education": {
     "title": "Education",
     "texts": [
-      "B.Sc. in Computer Science"
+      "B.Sc. in Computer Science",
+      "M.Sc. in Computer Science",
+      "Ph.D. in Computer Science"
     ]
   },
   "contact": {

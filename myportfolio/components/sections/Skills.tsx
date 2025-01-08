@@ -28,7 +28,7 @@ const Skills = () => {
       case 'others':
         return othersImage;
       default:
-        return othersImage; // Fallback image if title doesn't match
+        return othersImage;
     }
   };
 
