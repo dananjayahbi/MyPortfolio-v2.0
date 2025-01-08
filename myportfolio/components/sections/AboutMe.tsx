@@ -1,29 +1,65 @@
-// components/sections/AboutMe.tsx
+"use client";
 import React from 'react';
+import { Card, Typography, List } from 'antd';
+
+const { Title, Paragraph } = Typography;
 
 const AboutMe = () => {
-  return (
-    <div className="text-white leading-relaxed">
-      <p>
-        I am a passionate Full-Stack Developer who has been working on websites for more than three years. 
-        Currently, I am an undergraduate student at SLIIT University pursuing a degree in information technology. 
-        I am an active learner who enjoys experimenting with new tools and frameworks to expand my skill set. 
-        I experienced in technologies such as React, Node.js, MongoDB, Python, Flask, Next.js, and many more.
-      </p>
-      <p className="mt-4">
-        My abilities to solve problems, think creatively, and communicate clearly allow me to simplify 
-        difficult ideas and make valuable contributions to group projects. Whether delving into front-end 
-        or back-end work, I welcome all opportunities to take my abilities to new heights by accepting challenges 
-        that push me beyond what I already know.
-      </p>
-      <p className="mt-4">
-        As a self-starter with a propensity for rapid learning, I readily adapt to emerging technologies and focus 
-        my efforts on delivering innovative solutions that create real impact. My goal remains one of continuous growth 
-        both as a professional and as a thinker, while exploring possibilities to contribute my talents to meaningful 
-        projects and new opportunities within the exciting technology industry.
-      </p>
-    </div>
-  );
+    const content = JSON.parse(sessionStorage.getItem('content') || '{}');
+    const aboutMeData = content.aboutMe || {};
+    const authorData = content.author || {};
+
+    const personalDetails = [
+        { label: 'Name', value: authorData.name },
+        { label: 'Date of Birth', value: authorData.dob },
+        { label: 'Age', value: authorData.age },
+        { label: 'Freelance', value: authorData.freelance },
+        { label: 'Residence', value: authorData.residence },
+        { label: 'Email', value: authorData.email },
+        { label: 'Phone', value: authorData.phone },
+        { label: 'Status', value: authorData.myStatus },
+    ];
+
+    return (
+        <div className="text-white leading-relaxed">
+            {/* Title and Description (Outside the Card) */}
+            <Typography>
+                <Paragraph style={{ color: '#bfbfbf' }}>
+                    {aboutMeData.description}
+                </Paragraph>
+            </Typography>
+
+            {/* Card Wrapping the More Section and Personal Details */}
+            <Card
+                style={{
+                    backgroundColor: '#1f1f1f',
+                    color: '#fff',
+                    borderRadius: '8px',
+                    marginTop: '20px',
+                }}
+            >
+                {/* More Section */}
+                <Typography>
+                    <Title level={4} style={{ color: '#fff' }}>
+                        More
+                    </Title>
+                </Typography>
+
+                {/* Personal Details Section */}
+                <List
+                    dataSource={personalDetails}
+                    renderItem={(item) => (
+                        <List.Item style={{ border: 'none', color: '#bfbfbf' }}>
+                            <strong style={{ color: '#fff', marginRight: '8px' }}>
+                                {item.label}:
+                            </strong>
+                            <span>{item.value}</span>
+                        </List.Item>
+                    )}
+                />
+            </Card>
+        </div>
+    );
 };
 
 export default AboutMe;

@@ -1,64 +1,161 @@
 {
   "author": {
     "name": "John Doe",
-    "post": "Web Developer"
+    "post": "Web Developer",
+    "dob": "01-01-1990",
+    "age": 31,
+    "freelance": "Available",
+    "residence": "LK",
+    "email": "test@test.com",
+    "phone": "123-456-7890",
+    "myStatus": "I'm a passionate web developer."
   },
   "aboutMe": {
     "title": "About Me",
-    "description": "Updated portfolio content with new details."
+    "description": "A passionate web developer."
   },
   "skills": {
+    "title": "Skills",
     "subTitles": [
       {
-        "title": "JavaScript",
-        "description": "Mastering ES6+"
+        "title": "Frontend",
+        "technologies": [
+          {
+            "name": "React",
+            "image": "https://img.icons8.com/?size=100&id=asWSSTBrDlTW&format=png&color=000000"
+          },
+          {
+            "name": "Next.js",
+            "image": "https://images-cdn.openxcell.com/wp-content/uploads/2024/07/24154156/dango-inner-2.webp"
+          },
+          {
+            "name": "HTML",
+            "image": "https://img.icons8.com/?size=100&id=20909&format=png&color=000000"
+          },
+          {
+            "name": "Vue.js",
+            "image": "https://img.icons8.com/?size=100&id=eETV3RNHVrWA&format=png&color=000000"
+          }
+        ]
       },
       {
-        "title": "python12",
-        "description": "Updated to Advanced python Developer fds222"
+        "title": "Backend",
+        "technologies": [
+          {
+            "name": "Node.js",
+            "image": "https://img.icons8.com/?size=100&id=54087&format=png&color=000000"
+          },
+          {
+            "name": "Express",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnDneBGnQL7E9hZDwztRO1GfQcCj1FqRrhBw&s"
+          },
+          {
+            "name": "MongoDB",
+            "image": "https://img.icons8.com/?size=100&id=bosfpvRzNOG8&format=png&color=000000"
+          },
+          {
+            "name": "GraphQL",
+            "image": "https://img.icons8.com/?size=100&id=KRA1PoZgRrca&format=png&color=000000"
+          }
+        ]
       },
       {
-        "title": "JavaScript1",
-        "description": "Updated to Advanced JavaScript Developer fds1"
+        "title": "Database management",
+        "technologies": [
+          {
+            "name": "MongoDB",
+            "image": "https://img.icons8.com/?size=100&id=bosfpvRzNOG8&format=png&color=000000"
+          },
+          {
+            "name": "MySQL",
+            "image": "https://img.icons8.com/?size=100&id=rgPSE6nAB766&format=png&color=000000"
+          }
+        ]
+      },
+      {
+        "title": "Version Control",
+        "technologies": [
+          {
+            "name": "Git",
+            "image": "https://img.icons8.com/?size=100&id=20906&format=png&color=000000"
+          }
+        ]
+      },
+      {
+        "title": "Others",
+        "technologies": [
+          {
+            "name": "TypeScript",
+            "image": "https://img.icons8.com/?size=100&id=uJM6fQYqDaZK&format=png&color=000000"
+          },
+          {
+            "name": "SASS",
+            "image": "https://img.icons8.com/?size=100&id=NaQGFHVLR7a8&format=png&color=000000"
+          },
+          {
+            "name": "REST API",
+            "image": "https://img.icons8.com/?size=100&id=45057&format=png&color=000000"
+          }
+        ]
       }
     ]
   },
   "currentlyIAm": {
     "title": "Currently I Am",
     "texts": [
-      "Working on a new project",
-      "Exploring TypeScript2"
+      "Learning TypeScript Learning TypeScript Learning TypeScript Learning TypeScript",
+      "Building Projects",
+      "Looking for a job",
+      "Freelancing",
+      "Working on Open Source Projects",
+      "Working on my Portfolio",
+      "Working on my Blog",
+      "Working on my YouTube Channel"
     ]
   },
   "myHobbies": {
     "title": "My Hobbies",
     "texts": [
       "Coding",
-      "Reading"
+      "Reading",
+      "Watching Movies",
+      "Playing Video Games",
+      "Listening to Music",
+      "Traveling",
+      "Photography"
     ]
   },
   "funFacts": {
     "title": "Fun Facts",
     "texts": [
-      "I love coding challenges!"
+      "I love coding challenges!",
+      "I love to learn new technologies!",
+      "I love to build projects!",
+      "I love to help others!",
+      "I love to share my knowledge!"
     ]
   },
   "experience": {
     "title": "Experience",
     "texts": [
-      "3 Years in Web Development"
+      "3 Years in Web Development",
+      "1 Year in Mobile Development",
+      "1 Year in Game Development",
+      "1 Year in Desktop Developmentfd"
     ]
   },
   "education": {
     "title": "Education",
     "texts": [
-      "B.Sc. in Computer Science"
+      "B.Sc. in Computer Science",
+      "M.Sc. in Computer Science",
+      "Ph.D. in Computer Science"
     ]
   },
   "contact": {
-    "email": "upd@example.com",
+    "email": "johndoe@example.com",
     "phone": "123-987-6543",
-    "linkedin": "https://linkedin.com/in/newprofile",
+    "linkedin": "https://linkedin.com/in/johndoe",
     "github": "https://github.com/johndoe",
     "facebook": "https://facebook.com/johndoe"
   }

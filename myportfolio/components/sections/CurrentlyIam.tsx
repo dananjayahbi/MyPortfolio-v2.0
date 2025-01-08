@@ -1,33 +1,73 @@
-// components/sections/CurrentlyIam.tsx
+'use client';
 import React from 'react';
+import { motion } from 'framer-motion';
+import { Card, Typography } from 'antd';
+
+const { Title } = Typography;
 
 const CurrentlyIam = () => {
+  const content = JSON.parse(sessionStorage.getItem('content') || '{}');
+  const currentlyIam = content.currentlyIAm || {};
+
+  // Animation Variants for Cards
+  const containerVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, staggerChildren: 0.3 },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  };
+
   return (
-    <div className="text-white leading-relaxed space-y-6">
-      <ul className="list-disc space-y-4 pl-5">
-        <li>
-          🎓 <strong>Trying to complete my University Research Project</strong> on Machine Learning and Deep Learning.
-        </li>
-        <li>
-          🛠️ <strong>Working on a personal project</strong> to improve my skills.
-        </li>
-        <li>
-          🤖 <strong>Learning AI models fine-tuning.</strong>
-        </li>
-        <li>
-          🖥️ <strong>Learning about developing installable desktop applications</strong> using Electron.js and Python Tkinter.
-        </li>
-        <li>
-          🌐 <strong>Trying to create standalone portable server applications</strong> using Node.js and Express.js for small-scale projects and my personal projects.
-        </li>
-        <li>
-          📚 <strong>Learning more about TypeScript</strong> to level up it to my satisfaction level.
-        </li>
-        <li>
-          🚀 <strong>Trying to use AI models</strong> in my personal projects to improve the user experience (Check my GitHub repositories!).
-        </li>
-      </ul>
-    </div>
+    <motion.div
+      initial="hidden"
+      animate="visible"
+      variants={containerVariants}
+      className="text-white leading-relaxed space-y-10"
+    >
+      {/* Single Card Per Row with Animation */}
+      <motion.div
+        className="space-y-3 flex flex-col items-center"
+        variants={containerVariants}
+      >
+        {currentlyIam.texts?.map((item: string, index: number) => (
+          <motion.div
+            key={index}
+            variants={itemVariants}
+            style={{ width: '100%' }}
+          >
+            <Card
+              hoverable
+              style={{
+                maxWidth: '600px',
+                margin: 'auto',
+                padding: '10px',
+                borderRadius: '15px',
+                backgroundColor: '#1f1f1f',
+                boxShadow: '0 8px 20px rgba(0, 0, 0, 0.3)',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+                color: '#fff',
+                textAlign: 'left',
+                display: 'flex',
+                alignItems: 'center',
+                cursor: 'pointer',
+                flexWrap: 'wrap'
+              }}
+            >
+              <p style={{ fontSize: '1.1rem', fontWeight: '400', whiteSpace: 'normal' }}>
+                {item}
+              </p>
+            </Card>
+          </motion.div>
+        ))}
+      </motion.div>
+    </motion.div>
   );
 };
 

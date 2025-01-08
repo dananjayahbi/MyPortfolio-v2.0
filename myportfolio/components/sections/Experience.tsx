@@ -1,18 +1,67 @@
-// components/sections/Experience.tsx
+'use client';
 import React from 'react';
+import { Timeline, Typography } from 'antd';
+import { motion } from 'framer-motion';
+
+const { Title } = Typography;
 
 const Experience = () => {
-  return (
-    <div className="text-white leading-relaxed space-y-4">
-      <ul className="list-disc pl-5 space-y-3">
-        <li>💻 <strong>Worked as an Intern Software Engineer</strong> at "Intrada Technologies" for 6 months.</li>
-        <li>💼 <strong>Freelancing</strong> for nearly 2 years on Fiverr.</li>
-        <li>📦 <strong>Working on personal projects</strong> (Feel free to check my GitHub repositories).</li>
-        <li>🎓 <strong>Contributing to my University Research Project.</strong></li>
-        <li>🌐 <strong>Developing WordPress websites</strong> for clients (Not a regular task, but handled some projects).</li>
-      </ul>
-    </div>
-  );
+    const content = JSON.parse(sessionStorage.getItem('content') || '{}');
+    const experience = content.experience || {};
+
+    // Prepare Timeline items with corrected structure and margin-bottom
+    const timelineItems = experience.texts?.map((item: string, index: number) => ({
+        color: index % 2 === 0 ? 'blue' : 'green',
+        children: (
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                style={{
+                    fontSize: '1.2rem',
+                    fontWeight: '500',
+                    color: '#fff',
+                    marginBottom: '20px',  // Added margin-bottom here
+                }}
+            >
+                {item}
+            </motion.div>
+        ),
+    }));
+
+    return (
+        <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-white leading-relaxed space-y-10 flex flex-col items-center"
+            style={{ overflow: 'hidden' }}
+        >
+            <br />
+            {/* Custom Styling Added */}
+            <style jsx>{`
+                :global(.ant-timeline-item-tail) {
+                    background-color: #fff !important;
+                }
+                :global(.ant-timeline-item-content) {
+                    margin-bottom: 30px !important;
+                }
+            `}</style>
+
+            {/* Timeline with Custom Line Color and Margin */}
+            <div
+                style={{
+                    maxWidth: '600px',
+                    width: '100%',
+                    margin: '0 auto',
+                    padding: '0 20px',
+                    boxSizing: 'border-box',
+                }}
+            >
+                <Timeline items={timelineItems} mode="alternate" />
+            </div>
+        </motion.div>
+    );
 };
 
 export default Experience;

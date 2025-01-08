@@ -22,30 +22,29 @@ export async function PUT(request: Request) {
 
         const existingContent = JSON.parse(fs.readFileSync(contentFilePath, 'utf-8'));
 
-        // ✅ Handling Skills Section (Already Implemented Logic)
+        // ✅ Handling Skills Section with Updated Logic for Technologies
         if (updates.skills?.subTitles) {
-            updates.skills.subTitles.forEach((newSubTitle: { title: string; description: string }) => {
-                let matchFound = false;
-
-                existingContent.skills.subTitles = existingContent.skills.subTitles.map(
-                    (subTitle: { title: string; description: string }) => {
-                        if (subTitle.title === newSubTitle.title && subTitle.description === newSubTitle.description) {
-                            matchFound = true;
-                            return subTitle;
-                        }
-                        if (subTitle.title === newSubTitle.title && subTitle.description !== newSubTitle.description) {
-                            matchFound = true;
-                            return { ...subTitle, description: newSubTitle.description };
-                        }
-                        if (subTitle.description === newSubTitle.description && subTitle.title !== newSubTitle.title) {
-                            matchFound = true;
-                            return { ...subTitle, title: newSubTitle.title };
-                        }
-                        return subTitle;
-                    }
+            updates.skills.subTitles.forEach((newSubTitle: { title: string; technologies: { name: string; image: string }[] }) => {
+                const existingSubTitle = existingContent.skills.subTitles.find(
+                    (subTitle: { title: string }) => subTitle.title === newSubTitle.title
                 );
 
-                if (!matchFound) {
+                if (existingSubTitle) {
+                    newSubTitle.technologies.forEach(newTech => {
+                        const existingTech = existingSubTitle.technologies.find(
+                            (tech: { name: string }) => tech.name === newTech.name
+                        );
+
+                        if (existingTech) {
+                            // ✅ Update the technology image if it already exists
+                            existingTech.image = newTech.image;
+                        } else {
+                            // ✅ Add new technology if it doesn't exist
+                            existingSubTitle.technologies.push(newTech);
+                        }
+                    });
+                } else {
+                    // ✅ Add the entire new subtitle if it doesn't exist
                     existingContent.skills.subTitles.push(newSubTitle);
                 }
             });
