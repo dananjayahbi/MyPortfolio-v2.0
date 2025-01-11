@@ -14,6 +14,7 @@ import FunFacts from '@/components/sections/FunFacts';
 import Experience from '@/components/sections/Experience';
 import Education from '@/components/sections/Education';
 import Projects from '@/components/sections/Projects';
+import ProjectsM from '@/components/sections/ProjectsM';
 import ContactMe from '@/components/sections/ContactMe';
 
 export default function MobilePage() {
@@ -184,7 +185,7 @@ export default function MobilePage() {
           variants={animationVariants}
         >
           <h2 className="text-3xl font-bold text-yellow-400 mb-4">About Me</h2>
-          <AboutMe /> <br /> <br /> <br />
+          <AboutMe windowWidth={windowWidth} /> <br /> <br />
         </motion.section>
 
         <motion.section
@@ -194,11 +195,11 @@ export default function MobilePage() {
           variants={animationVariants}
         >
           <h2 className="text-3xl font-bold text-yellow-400 mb-4">Skills</h2>
-          <Skills /> <br /> <br /> <br />
-          <h2 className="text-3xl font-bold text-yellow-400 mt-4">
+          <Skills windowWidth={windowWidth} /> <br />
+          <h2 className="text-3xl font-bold text-yellow-400 mt-0">
             Currently I am
           </h2>
-          <CurrentlyIam /> <br /> <br /> <br />
+          <CurrentlyIam windowWidth={windowWidth} /> <br /> <br /> <br />
         </motion.section>
 
         <motion.section
@@ -210,11 +211,11 @@ export default function MobilePage() {
           <h2 className="text-3xl font-bold text-yellow-400 mb-4">
             My Hobbies
           </h2>
-          <MyHobbies /> <br /> <br /> <br />
+          <MyHobbies windowWidth={windowWidth} /> <br /> <br /> <br />
           <h2 className="text-3xl font-bold text-yellow-400 mt-4">
             Fun Facts About Me
           </h2>
-          <FunFacts /> <br /> <br /> <br />
+          <FunFacts windowWidth={windowWidth} /> <br /> <br /> <br />
         </motion.section>
 
         <motion.section
@@ -226,9 +227,9 @@ export default function MobilePage() {
           <h2 className="text-3xl font-bold text-yellow-400 mb-4">
             Experience
           </h2>
-          <Experience /> <br /> <br /> <br />
+          <Experience windowWidth={windowWidth} /> 
           <h2 className="text-3xl font-bold text-yellow-400 mt-4">Education</h2>
-          <Education /> <br /> <br /> <br />
+          <Education windowWidth={windowWidth} /> <br /> <br /> <br />
         </motion.section>
 
         <motion.section
@@ -238,7 +239,8 @@ export default function MobilePage() {
           variants={animationVariants}
         >
           <h2 className="text-3xl font-bold text-yellow-400 mb-4">Projects</h2>
-          <Projects /> <br /> <br /> <br />
+          {windowWidth < 600 ? <ProjectsM windowWidth={windowWidth} /> : <Projects windowWidth={windowWidth} />} 
+          <br /> <br /> <br />
         </motion.section>
 
         <motion.section
@@ -248,7 +250,7 @@ export default function MobilePage() {
           variants={animationVariants}
         >
           <h2 className="text-3xl font-bold text-yellow-400 mb-4">Contact</h2>
-          <ContactMe />
+          <ContactMe windowWidth={windowWidth} />
         </motion.section>
       </div>
     </div>

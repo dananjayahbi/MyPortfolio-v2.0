@@ -6,7 +6,7 @@ import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 
 const { Title } = Typography;
 
-const FunFacts = () => {
+const FunFacts = ({ windowWidth }: { windowWidth: number }) => {
   const content = JSON.parse(sessionStorage.getItem('content') || '{}');
   const funFacts = content.funFacts || {};
 

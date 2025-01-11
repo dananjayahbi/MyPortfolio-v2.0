@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 
 const { Title } = Typography;
 
-const Education = () => {
+const Education = ({ windowWidth }: { windowWidth: number }) => {
     const content = JSON.parse(sessionStorage.getItem('content') || '{}');
     const education = content.education || {};
 
@@ -30,7 +30,6 @@ const Education = () => {
                     maxWidth: '600px',
                     width: '100%',
                     margin: '0 auto',
-                    padding: '0 20px',
                     boxSizing: 'border-box',
                 }}
             >
@@ -48,12 +47,11 @@ const Education = () => {
                                 color: '#fff',
                                 textAlign: 'left',
                                 boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
-                                padding: '10px',
                                 border: '1px solid rgba(255, 255, 255, 0.1)',
                                 cursor: 'default',
                             }}
                         >
-                            <p style={{ fontSize: '1.2rem', fontWeight: '500' }}>
+                            <p style={{ fontSize: windowWidth < 425 ? '16px' : '20px', fontWeight: '500' }}>
                                 {item}
                             </p>
                         </Card>

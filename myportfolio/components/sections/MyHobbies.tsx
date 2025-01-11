@@ -6,7 +6,7 @@ import {
   CodeOutlined,
   ReadOutlined,
   VideoCameraOutlined,
-  CaretRightOutlined ,
+  CaretRightOutlined,
   CustomerServiceOutlined,
   CameraOutlined,
   EnvironmentOutlined,
@@ -21,16 +21,20 @@ const hobbyIcons: { [key: string]: React.ReactNode } = {
     <VideoCameraOutlined style={{ fontSize: '2rem', color: '#eb2f96' }} />
   ),
   'Playing Video Games': (
-    <CaretRightOutlined  style={{ fontSize: '2rem', color: '#fa8c16' }} />
+    <CaretRightOutlined style={{ fontSize: '2rem', color: '#fa8c16' }} />
   ),
   'Listening to Music': (
     <CustomerServiceOutlined style={{ fontSize: '2rem', color: '#13c2c2' }} />
   ),
-  Traveling: <EnvironmentOutlined style={{ fontSize: '2rem', color: '#722ed1' }} />,
-  Photography: <CameraOutlined style={{ fontSize: '2rem', color: '#fadb14' }} />,
+  Traveling: (
+    <EnvironmentOutlined style={{ fontSize: '2rem', color: '#722ed1' }} />
+  ),
+  Photography: (
+    <CameraOutlined style={{ fontSize: '2rem', color: '#fadb14' }} />
+  ),
 };
 
-const MyHobbies = () => {
+const MyHobbies = ({ windowWidth }: { windowWidth: number }) => {
   const content = JSON.parse(sessionStorage.getItem('content') || '{}');
   const myHobbies = content.myHobbies || {};
 
@@ -45,9 +49,23 @@ const MyHobbies = () => {
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 100 } },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { type: 'spring', stiffness: 100 },
+    },
     hover: { scale: 1.05, transition: { yoyo: Infinity } },
   };
+
+  // ✅ Dynamic Card Sizing Based on windowWidth
+  const getCardSize = () => {
+    if (windowWidth < 425) {
+      return { cardWidth: 200, avatarSize: 48, fontSize: '1.5rem' }; // Reduced size for small screens
+    }
+    return { cardWidth: 300, avatarSize: 64, fontSize: '2rem' }; // Default size
+  };
+
+  const cardSize = getCardSize();
 
   return (
     <motion.div
@@ -57,7 +75,13 @@ const MyHobbies = () => {
       className="text-white leading-relaxed space-y-8"
     >
       {/* Hobbies Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div
+        className={`grid grid-cols-1 ${
+          windowWidth >= 768
+            ? 'sm:grid-cols-2 lg:grid-cols-3'
+            : 'sm:grid-cols-2'
+        } gap-6`}
+      >
         {myHobbies.texts?.map((hobby: string, index: number) => (
           <motion.div
             key={index}
@@ -68,7 +92,7 @@ const MyHobbies = () => {
             <Card
               hoverable
               style={{
-                width: 300,
+                width: cardSize.cardWidth,
                 textAlign: 'center',
                 borderRadius: '15px',
                 backgroundColor: '#1f1f1f',
@@ -79,11 +103,15 @@ const MyHobbies = () => {
               }}
             >
               <Avatar
-                size={64}
-                icon={hobbyIcons[hobby] || <CodeOutlined style={{ fontSize: '2rem' }} />}
+                size={cardSize.avatarSize}
+                icon={
+                  hobbyIcons[hobby] || (
+                    <CodeOutlined style={{ fontSize: cardSize.fontSize }} />
+                  )
+                }
                 style={{ backgroundColor: 'transparent', marginBottom: '10px' }}
               />
-              <Title level={4} style={{ color: '#fff' }}>
+                <Title level={4} style={{ color: '#fff', fontSize: windowWidth < 425 ? '16px' : '20px' }}>
                 {hobby}
               </Title>
             </Card>

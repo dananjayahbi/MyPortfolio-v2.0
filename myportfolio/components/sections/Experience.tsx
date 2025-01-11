@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 
 const { Title } = Typography;
 
-const Experience = () => {
+const Experience = ({ windowWidth }: { windowWidth: number }) => {
     const content = JSON.parse(sessionStorage.getItem('content') || '{}');
     const experience = content.experience || {};
 
@@ -18,7 +18,7 @@ const Experience = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
                 style={{
-                    fontSize: '1.2rem',
+                    fontSize: windowWidth < 425 ? '12px' : windowWidth < 500 ? '16px' : '20px',
                     fontWeight: '500',
                     color: '#fff',
                     marginBottom: '20px',  // Added margin-bottom here

@@ -4,7 +4,7 @@ import { Card, Typography, List } from 'antd';
 
 const { Title, Paragraph } = Typography;
 
-const AboutMe = () => {
+const AboutMe = ({ windowWidth }: { windowWidth: number }) => {
     const content = JSON.parse(sessionStorage.getItem('content') || '{}');
     const aboutMeData = content.aboutMe || {};
     const authorData = content.author || {};

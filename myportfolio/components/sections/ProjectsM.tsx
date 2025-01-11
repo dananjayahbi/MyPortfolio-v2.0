@@ -14,7 +14,7 @@ type ProjectData = {
   createdAt: string;
 };
 
-const Projects = ({ windowWidth }: { windowWidth: number }) => {
+const ProjectsM = ({ windowWidth }: { windowWidth: number }) => {
   const [projects, setProjects] = useState<ProjectData[]>([]);
   const [hexagonTitles, setHexagonTitles] = useState<string[]>([
     'Hexagon 1',
@@ -64,7 +64,7 @@ const Projects = ({ windowWidth }: { windowWidth: number }) => {
     fetchData();
   }, []);
 
-  // Hexagon base style
+  // Hexagon base style with rotation applied
   const hexagonStyle: React.CSSProperties = {
     width: '220px',
     height: '250px',
@@ -82,20 +82,31 @@ const Projects = ({ windowWidth }: { windowWidth: number }) => {
     overflow: 'hidden',
     padding: '10px',
     color: 'black',
+    transform: 'rotate(30deg)', // Rotating the hexagon
+  };
+
+  // Preventing inner content rotation
+  const innerContentStyle: React.CSSProperties = {
+    transform: 'rotate(-30deg)', // Rotating content back to prevent rotation
+    width: '100%',
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
   };
 
   // Hover effect style
   const hexagonHoverStyle: React.CSSProperties = {
     backgroundColor: '#f6b846',
     opacity: 0.7,
-    transform: 'scale(1.05)',
+    transform: 'scale(1.05) rotate(30deg)', // Maintaining rotation on hover
     color: 'white',
     fontWeight: 500,
     fontSize: '16px',
     zIndex: 1,
   };
 
-  // State to manage hover effects
   const [hoveredHexagon, setHoveredHexagon] = useState<number | null>(null);
 
   const handleNavigate = (project?: ProjectData) => {
@@ -107,14 +118,20 @@ const Projects = ({ windowWidth }: { windowWidth: number }) => {
     }
   };
 
+  // ✅ Updated Hexagon Positioning for Center Alignment
+  const hexagonPositions: React.CSSProperties[] = [
+    { top: '10px', left: `${(windowWidth - 280) / 2}px` },
+    { top: '230px', left: `${(windowWidth - 280) / 2}px` }, 
+    { top: '450px', left: `${(windowWidth - 280) / 2}px` },  
+    { top: '670px', left: `${(windowWidth - 280) / 2}px` }  
+  ];
+
   return (
-    <div style={{ position: 'relative', height: '600px' }}>
+    <div style={{ position: 'relative', height: '880px' }}>
       {hexagonTitles.map((title, index) => {
-        const hexagonPosition: React.CSSProperties = {
+        const hexagonPosition = {
           ...hexagonStyle,
-          ...(index === 1 ? { top: '193px', left: '113px' } : {}),
-          ...(index === 2 ? { top: '193px', left: '339px' } : {}),
-          ...(index === 3 ? { top: '386px', left: '226px' } : {}),
+          ...hexagonPositions[index], // ✅ Dynamically applying position for all hexagons
         };
 
         return (
@@ -127,20 +144,23 @@ const Projects = ({ windowWidth }: { windowWidth: number }) => {
             onMouseEnter={() => setHoveredHexagon(index)}
             onMouseLeave={() => setHoveredHexagon(null)}
           >
-            {hoveredHexagon === index ? (
-              <div>
-                <p>{hexagonDescriptions[index]}</p>
-                <Button
-                  type="primary"
-                  onClick={() => handleNavigate(projects[index])}
-                >
-                  View
-                  <Send style={{ marginTop: '2px' }} size={12} />
-                </Button>
-              </div>
-            ) : (
-              title
-            )}
+            {/* ✅ Rotating content back to keep it aligned properly */}
+            <div style={innerContentStyle}>
+              {hoveredHexagon === index ? (
+                <div>
+                  <p>{hexagonDescriptions[index]}</p>
+                  <Button
+                    type="primary"
+                    onClick={() => handleNavigate(projects[index])}
+                  >
+                    View
+                    <Send style={{ marginTop: '2px' }} size={12} />
+                  </Button>
+                </div>
+              ) : (
+                title
+              )}
+            </div>
           </div>
         );
       })}
@@ -148,4 +168,4 @@ const Projects = ({ windowWidth }: { windowWidth: number }) => {
   );
 };
 
-export default Projects;
+export default ProjectsM;
