@@ -11,13 +11,17 @@ import MyHobbies from '@/components/sections/MyHobbies';
 import FunFacts from '@/components/sections/FunFacts';
 import Experience from '@/components/sections/Experience';
 import Education from '@/components/sections/Education';
+import Projects from '@/components/sections/Projects';
 import ContactMe from '@/components/sections/ContactMe';
+import Test from '@/components/sections/Test';
 
 export default function DesktopPage() {
     const aboutRef = useRef<HTMLDivElement | null>(null);
     const skillsRef = useRef<HTMLDivElement | null>(null);
+    const currentlyRef = useRef<HTMLDivElement | null>(null);
     const othersRef = useRef<HTMLDivElement | null>(null);
     const experienceRef = useRef<HTMLDivElement | null>(null);
+    const educatuinRef = useRef<HTMLDivElement | null>(null);
     const projectsRef = useRef<HTMLDivElement | null>(null);
     const contactRef = useRef<HTMLDivElement | null>(null);
 
@@ -118,6 +122,9 @@ export default function DesktopPage() {
                     <motion.section ref={skillsRef} initial="hidden" whileInView="visible" variants={animationVariants}>
                         <h2 className="text-3xl font-bold text-yellow-400 mb-4">Skills</h2>
                         <Skills /> <br /> <br /> <br />
+                    </motion.section>
+
+                    <motion.section ref={currentlyRef} initial="hidden" whileInView="visible" variants={animationVariants}>
                         <h2 className="text-3xl font-bold text-yellow-400 mb-4">Currently I am</h2>
                         <CurrentlyIam /> <br /> <br /> <br />
                     </motion.section>
@@ -133,13 +140,16 @@ export default function DesktopPage() {
                     <motion.section ref={experienceRef} initial="hidden" whileInView="visible" variants={animationVariants}>
                         <h2 className="text-3xl font-bold text-yellow-400 mb-4">Experience</h2>
                         <Experience /> <br /> <br /> <br />
+                    </motion.section>
+
+                    <motion.section ref={educatuinRef} initial="hidden" whileInView="visible" variants={animationVariants}>
                         <h2 className="text-3xl font-bold text-yellow-400 mb-4">Education</h2>
                         <Education /> <br /> <br /> <br />
                     </motion.section>
 
                     <motion.section ref={projectsRef} initial="hidden" whileInView="visible" variants={animationVariants}>
                         <h2 className="text-3xl font-bold text-yellow-400 mb-4">Projects</h2>
-                        <p>Project details here...</p> <br /> <br /> <br />
+                        <Projects /> <br /> <br /> <br />
                     </motion.section>
 
                     <motion.section ref={contactRef} initial="hidden" whileInView="visible" variants={animationVariants}>

@@ -11,6 +11,7 @@ import MyHobbies from '@/components/sections/MyHobbies';
 import FunFacts from '@/components/sections/FunFacts';
 import Experience from '@/components/sections/Experience';
 import Education from '@/components/sections/Education';
+import Projects from '@/components/sections/Projects';
 import ContactMe from '@/components/sections/ContactMe';
 
 export default function MobilePage() {
@@ -138,7 +139,7 @@ export default function MobilePage() {
 
                 <motion.section ref={projectsRef} initial="hidden" whileInView="visible" variants={animationVariants}>
                     <h2 className="text-3xl font-bold text-yellow-400 mb-4">Projects</h2>
-                    <p>Project details will go here...</p> <br /> <br /> <br />
+                    <Projects /> <br /> <br /> <br />
                 </motion.section>
 
                 <motion.section ref={contactRef} initial="hidden" whileInView="visible" variants={animationVariants}>
