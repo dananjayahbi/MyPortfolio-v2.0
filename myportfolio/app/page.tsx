@@ -1,8 +1,10 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { Spin, message } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
 import DesktopPage from './desktop-page/page';
 import MobilePage from './mobile-page/page';
+import '@ant-design/v5-patch-for-react-19';
 
 export default function HomePage() {
     const [isLargeScreen, setIsLargeScreen] = useState<boolean | null>(null);
@@ -38,11 +40,21 @@ export default function HomePage() {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
+    const antIcon = <LoadingOutlined style={{ fontSize: 48, color: '#f6b846' }} spin />;
+
     // ✅ Show loading spinner while fetching data
     if (loading || isLargeScreen === null) {
         return (
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-                <Spin size="large" />
+            <div
+                style={{ 
+                    display: 'flex', 
+                    justifyContent: 'center', 
+                    alignItems: 'center', 
+                    height: '100vh', 
+                    backgroundColor: '#1e1e1e' 
+                }}
+            >
+                <Spin indicator={antIcon} />
             </div>
         );
     }

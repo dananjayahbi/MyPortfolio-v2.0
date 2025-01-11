@@ -57,7 +57,8 @@ const CurrentlyIam = () => {
                 display: 'flex',
                 alignItems: 'center',
                 cursor: 'pointer',
-                flexWrap: 'wrap'
+                flexWrap: 'wrap',
+                pointerEvents: 'none',
               }}
             >
               <p style={{ fontSize: '1.1rem', fontWeight: '400', whiteSpace: 'normal' }}>

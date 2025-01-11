@@ -53,6 +53,14 @@ const AboutMe = () => {
                             <strong style={{ color: '#fff', marginRight: '8px' }}>
                                 {item.label}:
                             </strong>
+                            {/* Gradient line with rounded start */}
+                            <div style={{
+                                flexGrow: 1,
+                                height: '4px',
+                                background: 'linear-gradient(to right, #bfbfbf, transparent)',
+                                margin: '0 8px',
+                                borderRadius: '50px 0 0 50px'
+                            }}></div>
                             <span>{item.value}</span>
                         </List.Item>
                     )}
