@@ -103,9 +103,9 @@ const Projects = ({ windowWidth }: { windowWidth: number }) => {
       router.push('/projectsM/main-projects');
     } else if (project) {
       const encodedData = encodeURIComponent(JSON.stringify(project));
-      router.push(`/projects/page?data=${encodedData}`);
+      window.open(`/projects/page?data=${encodedData}`, '_blank');
     } else {
-      router.push('/projects/main-projects');
+      window.open('/projects/main-projects', '_blank');
     }
   };
 
