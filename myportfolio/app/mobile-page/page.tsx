@@ -175,7 +175,11 @@ export default function MobilePage() {
 
       {/* ✅ Centered Profile Card */}
       <div className="flex flex-col items-center justify-center p-10 pt-24">
-        {windowWidth < 530 ? <InfoCardM /> : <InfoCard />}
+      {windowWidth < 530 ? (
+          <InfoCardM scrollToContact={() => scrollToSection(contactRef)} />
+        ) : (
+          <InfoCard scrollToContact={() => scrollToSection(contactRef)} />
+        )}
       </div>
 
       {/* ✅ Animated Content Sections */}
@@ -241,7 +245,7 @@ export default function MobilePage() {
         </motion.section>
 
         <motion.section
-          ref={experienceRef}
+          ref={educatuinRef}
           initial="hidden"
           whileInView="visible"
           variants={animationVariants}

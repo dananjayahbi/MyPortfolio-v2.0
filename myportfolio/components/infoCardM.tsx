@@ -6,10 +6,23 @@ import Background from '@/public/images/background.jpg';
 import me from '@/public/images/me.png';
 import { Download, Send, Github, Facebook, Instagram } from 'lucide-react';
 
-const InfoCardM: React.FC = () => {
+type InfoCardMProps = {
+  scrollToContact: () => void;
+};
+
+const InfoCardM: React.FC<InfoCardMProps> = ({ scrollToContact }) => {
   // ✅ Fetch content from session storage
   const content = JSON.parse(sessionStorage.getItem('content') || '{}');
   const author = content.author || { name: 'Unknown', post: 'No Title' };
+
+  // ✅ Corrected: Using static file path for public folder
+  const handleDownloadCV = () => {
+    const cvPath = '/files/CV.pdf'; // Direct public path reference
+    const link = document.createElement('a');
+    link.href = cvPath;
+    link.download = 'CV.pdf'; // ✅ File will be named as CV.pdf when downloaded
+    link.click();
+  };
 
   return (
     <div className="relative flex justify-center items-center">
@@ -69,24 +82,27 @@ const InfoCardM: React.FC = () => {
           </div>
 
           {/* Divider */}
-          <div className="w-full border-t border-gray-600 opacity-50 mt-4"></div>
+          <div className="w-full border-t border-gray-600 opacity-50 mt-16"></div>
 
           {/* Button Section */}
-          <div className="flex flex-col items-center mt-2 justify-center w-full gap-2 z-10">
+          <div className="flex items-center mt-2 justify-center w-full gap-2 z-10">
             {/* Download CV Button */}
             <Button
-                variant="default"
-                className="text-gray-400 bg-transparent hover:bg-transparent hover:text-white opacity-80 hover:opacity-100 flex items-center gap-2"
+              variant="default"
+              className="text-gray-400 bg-transparent hover:bg-transparent hover:text-white opacity-80 hover:opacity-100 flex items-center gap-2"
+              onClick={handleDownloadCV} // ✅ Triggering Download
             >
-                <Download /> Download CV
+              <Download />
+              CV
             </Button>
 
             {/* Contact Me Button */}
             <Button
               variant="default"
               className="text-gray-400 bg-transparent hover:bg-transparent hover:text-white opacity-80 hover:opacity-100 flex items-center gap-2"
+              onClick={scrollToContact} // ✅ Triggering Scroll
             >
-              <Send /> Contact Me
+              <Send /> Contact
             </Button>
           </div>
         </div>

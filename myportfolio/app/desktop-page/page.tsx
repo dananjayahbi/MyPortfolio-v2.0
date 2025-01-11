@@ -109,7 +109,7 @@ export default function DesktopPage() {
             {/* Main Content Section with Animations */}
             <main className="flex flex-1 ml-20">
                 <div className="w-1/2 flex items-center justify-center fixed left-20 top-0 h-screen p-10">
-                    <InfoCard />
+                    <InfoCard scrollToContact={() => scrollToSection(contactRef)} />
                 </div>
 
                 <div className="w-1/2 ml-auto bg-[#1E1E1E] p-12 border-l border-gray-800 overflow-y-auto h-screen">
