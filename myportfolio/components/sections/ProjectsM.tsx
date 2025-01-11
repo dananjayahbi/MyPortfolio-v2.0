@@ -28,6 +28,7 @@ const ProjectsM = ({ windowWidth }: { windowWidth: number }) => {
     '',
     'Wanna see more?',
   ]);
+  const [tappedHexagon, setTappedHexagon] = useState<number | null>(null); // ✅ Tap state instead of hover
   const router = useRouter();
 
   // Fetch project data from the server
@@ -65,6 +66,7 @@ const ProjectsM = ({ windowWidth }: { windowWidth: number }) => {
   }, []);
 
   // Hexagon base style with rotation applied
+  // ✅ Hexagon Styling
   const hexagonStyle: React.CSSProperties = {
     width: '220px',
     height: '250px',
@@ -85,9 +87,9 @@ const ProjectsM = ({ windowWidth }: { windowWidth: number }) => {
     transform: 'rotate(30deg)', // Rotating the hexagon
   };
 
-  // Preventing inner content rotation
+  // ✅ Inner content rotation fix
   const innerContentStyle: React.CSSProperties = {
-    transform: 'rotate(-30deg)', // Rotating content back to prevent rotation
+    transform: 'rotate(-30deg)',
     width: '100%',
     height: '100%',
     display: 'flex',
@@ -96,21 +98,21 @@ const ProjectsM = ({ windowWidth }: { windowWidth: number }) => {
     justifyContent: 'center',
   };
 
-  // Hover effect style
-  const hexagonHoverStyle: React.CSSProperties = {
+  // ✅ Active Hexagon Style (Tap Effect)
+  const hexagonTappedStyle: React.CSSProperties = {
     backgroundColor: '#f6b846',
-    opacity: 0.7,
-    transform: 'scale(1.05) rotate(30deg)', // Maintaining rotation on hover
+    opacity: 0.9,
+    transform: 'scale(1.05) rotate(30deg)',
     color: 'white',
     fontWeight: 500,
     fontSize: '16px',
     zIndex: 1,
   };
 
-  const [hoveredHexagon, setHoveredHexagon] = useState<number | null>(null);
-
   const handleNavigate = (project?: ProjectData) => {
-    if (project) {
+    if (windowWidth < 750) {
+      router.push('/projectsM/main-projects');
+    } else if (project) {
       const encodedData = encodeURIComponent(JSON.stringify(project));
       router.push(`/projects/page?data=${encodedData}`);
     } else {
@@ -121,40 +123,42 @@ const ProjectsM = ({ windowWidth }: { windowWidth: number }) => {
   // ✅ Updated Hexagon Positioning for Center Alignment
   const hexagonPositions: React.CSSProperties[] = [
     { top: '10px', left: `${(windowWidth - 280) / 2}px` },
-    { top: '230px', left: `${(windowWidth - 280) / 2}px` }, 
-    { top: '450px', left: `${(windowWidth - 280) / 2}px` },  
-    { top: '670px', left: `${(windowWidth - 280) / 2}px` }  
+    { top: '230px', left: `${(windowWidth - 280) / 2}px` },
+    { top: '450px', left: `${(windowWidth - 280) / 2}px` },
+    { top: '670px', left: `${(windowWidth - 280) / 2}px` },
   ];
 
+  // ✅ Toggle Tap Effect
+  const handleHexagonTap = (index: number) => {
+    setTappedHexagon(tappedHexagon === index ? null : index);
+  };
+
   return (
-    <div style={{ position: 'relative', height: '880px' }}>
+    <div style={{ position: "relative", height: "880px" }}>
       {hexagonTitles.map((title, index) => {
         const hexagonPosition = {
           ...hexagonStyle,
-          ...hexagonPositions[index], // ✅ Dynamically applying position for all hexagons
+          ...hexagonPositions[index],
+          ...(tappedHexagon === index ? hexagonTappedStyle : {}),
         };
 
         return (
           <div
             key={index}
-            style={{
-              ...hexagonPosition,
-              ...(hoveredHexagon === index ? hexagonHoverStyle : {}),
-            }}
-            onMouseEnter={() => setHoveredHexagon(index)}
-            onMouseLeave={() => setHoveredHexagon(null)}
+            style={hexagonPosition}
+            onClick={() => handleHexagonTap(index)} // ✅ Changed to tap interaction
           >
-            {/* ✅ Rotating content back to keep it aligned properly */}
             <div style={innerContentStyle}>
-              {hoveredHexagon === index ? (
+              {tappedHexagon === index ? (
                 <div>
                   <p>{hexagonDescriptions[index]}</p>
                   <Button
                     type="primary"
                     onClick={() => handleNavigate(projects[index])}
+                    style={{ marginTop: "10px" }}
                   >
                     View
-                    <Send style={{ marginTop: '2px' }} size={12} />
+                    <Send style={{ marginTop: "2px" }} size={12} />
                   </Button>
                 </div>
               ) : (

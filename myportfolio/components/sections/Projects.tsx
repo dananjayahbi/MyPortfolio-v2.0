@@ -99,7 +99,9 @@ const Projects = ({ windowWidth }: { windowWidth: number }) => {
   const [hoveredHexagon, setHoveredHexagon] = useState<number | null>(null);
 
   const handleNavigate = (project?: ProjectData) => {
-    if (project) {
+    if (windowWidth < 750) {
+      router.push('/projectsM/main-projects');
+    } else if (project) {
       const encodedData = encodeURIComponent(JSON.stringify(project));
       router.push(`/projects/page?data=${encodedData}`);
     } else {
@@ -133,6 +135,7 @@ const Projects = ({ windowWidth }: { windowWidth: number }) => {
                 <Button
                   type="primary"
                   onClick={() => handleNavigate(projects[index])}
+                  style={{ marginTop: "10px" }}
                 >
                   View
                   <Send style={{ marginTop: '2px' }} size={12} />

@@ -13,15 +13,6 @@ const InfoCard: React.FC = () => {
 
     return (
         <div className="relative flex justify-center items-center">
-            {/* Shadow Card (Offset and No Glow) */}
-            <div
-                className="absolute w-[450px] h-[600px] bg-yellow-500 rounded-xl opacity-50"
-                style={{
-                    top: '-10px',
-                    right: '10px',
-                }}
-            ></div>
-
             {/* Main Card */}
             <ShadcnCard className="relative w-[450px] h-[600px] bg-[#222222] text-white rounded-xl overflow-hidden border-none z-10">
                 {/* Background Image Section */}

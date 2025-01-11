@@ -20,8 +20,10 @@ import ContactMe from '@/components/sections/ContactMe';
 export default function MobilePage() {
   const aboutRef = useRef<HTMLDivElement | null>(null);
   const skillsRef = useRef<HTMLDivElement | null>(null);
+  const currentlyRef = useRef<HTMLDivElement | null>(null);
   const othersRef = useRef<HTMLDivElement | null>(null);
   const experienceRef = useRef<HTMLDivElement | null>(null);
+  const educatuinRef = useRef<HTMLDivElement | null>(null);
   const projectsRef = useRef<HTMLDivElement | null>(null);
   const contactRef = useRef<HTMLDivElement | null>(null);
 
@@ -105,7 +107,7 @@ export default function MobilePage() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#121212] text-white">
+    <div className="flex flex-col min-h-screen bg-[#121212] text-white overflow-y-auto">
       {/* ✅ Mobile Collapsible Menu and Desktop Navbar */}
       {windowWidth < 768 ? (
         <motion.nav
@@ -177,7 +179,7 @@ export default function MobilePage() {
       </div>
 
       {/* ✅ Animated Content Sections */}
-      <div className="flex flex-col bg-[#1E1E1E] p-8 border-t border-gray-800 overflow-y-auto">
+      <div className="flex flex-col bg-[#1E1E1E] p-8 border-t border-gray-800 overflow-y-hidden">
         <motion.section
           ref={aboutRef}
           initial="hidden"
@@ -196,6 +198,14 @@ export default function MobilePage() {
         >
           <h2 className="text-3xl font-bold text-yellow-400 mb-4">Skills</h2>
           <Skills windowWidth={windowWidth} /> <br />
+        </motion.section>
+
+        <motion.section
+          ref={currentlyRef}
+          initial="hidden"
+          whileInView="visible"
+          variants={animationVariants}
+        >
           <h2 className="text-3xl font-bold text-yellow-400 mt-0">
             Currently I am
           </h2>
@@ -214,7 +224,7 @@ export default function MobilePage() {
           <MyHobbies windowWidth={windowWidth} /> <br /> <br /> <br />
           <h2 className="text-3xl font-bold text-yellow-400 mt-4">
             Fun Facts About Me
-          </h2>
+          </h2> <br />
           <FunFacts windowWidth={windowWidth} /> <br /> <br /> <br />
         </motion.section>
 
@@ -227,7 +237,15 @@ export default function MobilePage() {
           <h2 className="text-3xl font-bold text-yellow-400 mb-4">
             Experience
           </h2>
-          <Experience windowWidth={windowWidth} /> 
+          <Experience windowWidth={windowWidth} />
+        </motion.section>
+
+        <motion.section
+          ref={experienceRef}
+          initial="hidden"
+          whileInView="visible"
+          variants={animationVariants}
+        >
           <h2 className="text-3xl font-bold text-yellow-400 mt-4">Education</h2>
           <Education windowWidth={windowWidth} /> <br /> <br /> <br />
         </motion.section>
@@ -239,7 +257,11 @@ export default function MobilePage() {
           variants={animationVariants}
         >
           <h2 className="text-3xl font-bold text-yellow-400 mb-4">Projects</h2>
-          {windowWidth < 600 ? <ProjectsM windowWidth={windowWidth} /> : <Projects windowWidth={windowWidth} />} 
+          {windowWidth < 600 ? (
+            <ProjectsM windowWidth={windowWidth} />
+          ) : (
+            <Projects windowWidth={windowWidth} />
+          )}
           <br /> <br /> <br />
         </motion.section>
 

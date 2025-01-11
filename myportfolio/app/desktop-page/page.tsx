@@ -13,7 +13,6 @@ import Experience from '@/components/sections/Experience';
 import Education from '@/components/sections/Education';
 import Projects from '@/components/sections/Projects';
 import ContactMe from '@/components/sections/ContactMe';
-import Test from '@/components/sections/Test';
 
 export default function DesktopPage() {
     const aboutRef = useRef<HTMLDivElement | null>(null);
@@ -26,6 +25,7 @@ export default function DesktopPage() {
     const contactRef = useRef<HTMLDivElement | null>(null);
 
     const [activeSection, setActiveSection] = useState<string | null>(null);
+    const [windowWidth, setWindowWidth] = useState<number>(window.innerWidth);
 
     const sections = [
         { ref: aboutRef, name: 'About Me' },
@@ -116,45 +116,45 @@ export default function DesktopPage() {
                     {/* ✅ Animated Content Sections */}
                     <motion.section ref={aboutRef} initial="hidden" whileInView="visible" variants={animationVariants}>
                         <h2 className="text-3xl font-bold text-yellow-400 mb-4">About Me</h2>
-                        <AboutMe /> <br /> <br /> <br />
+                        <AboutMe windowWidth={windowWidth} /> <br /> <br /> <br />
                     </motion.section>
 
                     <motion.section ref={skillsRef} initial="hidden" whileInView="visible" variants={animationVariants}>
                         <h2 className="text-3xl font-bold text-yellow-400 mb-4">Skills</h2>
-                        <Skills /> <br /> <br /> <br />
+                        <Skills windowWidth={windowWidth} /> <br /> <br /> <br />
                     </motion.section>
 
                     <motion.section ref={currentlyRef} initial="hidden" whileInView="visible" variants={animationVariants}>
                         <h2 className="text-3xl font-bold text-yellow-400 mb-4">Currently I am</h2>
-                        <CurrentlyIam /> <br /> <br /> <br />
+                        <CurrentlyIam windowWidth={windowWidth} /> <br /> <br /> <br />
                     </motion.section>
 
                     <motion.section ref={othersRef} initial="hidden" whileInView="visible" variants={animationVariants}>
                         <h2 className="text-3xl font-bold text-yellow-400 mb-4">Others</h2>
                         <h2 className="text-2xl font-bold text-white mb-4">My Hobbies</h2>
-                        <MyHobbies /> <br /> <br /> <br />
+                        <MyHobbies windowWidth={windowWidth} /> <br /> <br /> <br />
                         <h2 className="text-2xl font-bold text-white mb-4">Fun Facts About Me</h2>
-                        <FunFacts /> <br /> <br /> <br />
+                        <FunFacts windowWidth={windowWidth} /> <br /> <br /> <br />
                     </motion.section>
 
                     <motion.section ref={experienceRef} initial="hidden" whileInView="visible" variants={animationVariants}>
                         <h2 className="text-3xl font-bold text-yellow-400 mb-4">Experience</h2>
-                        <Experience /> <br /> <br /> <br />
+                        <Experience windowWidth={windowWidth} /> <br /> <br /> <br />
                     </motion.section>
 
                     <motion.section ref={educatuinRef} initial="hidden" whileInView="visible" variants={animationVariants}>
                         <h2 className="text-3xl font-bold text-yellow-400 mb-4">Education</h2>
-                        <Education /> <br /> <br /> <br />
+                        <Education windowWidth={windowWidth} /> <br /> <br /> <br />
                     </motion.section>
 
                     <motion.section ref={projectsRef} initial="hidden" whileInView="visible" variants={animationVariants}>
                         <h2 className="text-3xl font-bold text-yellow-400 mb-4">Projects</h2>
-                        <Projects /> <br /> <br /> <br />
+                        <Projects windowWidth={windowWidth} /> <br /> <br /> <br />
                     </motion.section>
 
                     <motion.section ref={contactRef} initial="hidden" whileInView="visible" variants={animationVariants}>
                         <h2 className="text-3xl font-bold text-yellow-400 mb-4">Contact</h2>
-                        <ContactMe />
+                        <ContactMe windowWidth={windowWidth} />
                     </motion.section>
                 </div>
             </main>

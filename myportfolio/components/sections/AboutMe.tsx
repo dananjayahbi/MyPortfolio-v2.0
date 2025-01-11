@@ -21,7 +21,7 @@ const AboutMe = ({ windowWidth }: { windowWidth: number }) => {
     ];
 
     return (
-        <div className="text-white leading-relaxed">
+        <div className="text-white leading-relaxed overflow-y-hidden">
             {/* Title and Description (Outside the Card) */}
             <Typography>
                 <Paragraph style={{ color: '#bfbfbf' }}>
