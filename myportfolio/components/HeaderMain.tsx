@@ -1,22 +1,27 @@
 'use client';
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/navigation';
+import { QuestionCircleOutlined } from '@ant-design/icons';
 
 type HeaderMainProps = {
   homeButtonRef: React.RefObject<HTMLButtonElement>;
   experimentalButtonRef: React.RefObject<HTMLButtonElement>;
+  onTourStart: () => void;
 };
 
 const HeaderMain: React.FC<HeaderMainProps> = ({
   homeButtonRef,
   experimentalButtonRef,
+  onTourStart,
 }) => {
   const router = useRouter();
   const [windowWidth, setWindowWidth] = useState<number>(0);
+  const [currentPath, setCurrentPath] = useState<string>('');
 
   useEffect(() => {
     setWindowWidth(window.innerWidth);
+    setCurrentPath(window.location.href); // ✅ Capture the current route
   }, []);
 
   // Resize event listener
@@ -52,11 +57,15 @@ const HeaderMain: React.FC<HeaderMainProps> = ({
     >
       {windowWidth > 500 && <h1>My Main Projects</h1>}
       <div style={{ display: 'flex', gap: '10px' }}>
+        {/* ✅ Conditional rendering for the "?" button */}
+        {windowWidth > 600 && currentPath !== 'http://localhost:3000/projectsM/main-projects' && (
+          <Button onClick={onTourStart}>
+            <QuestionCircleOutlined /> Help
+          </Button>
+        )}
+
         {/* Button for Home Page */}
-        <Button
-          ref={homeButtonRef}
-          onClick={() => router.push('http://localhost:3000')}
-        >
+        <Button ref={homeButtonRef} onClick={() => router.push('http://localhost:3000')}>
           Home
         </Button>
 

@@ -252,6 +252,7 @@ const Page = () => {
           <HeaderMain
             homeButtonRef={homeButtonRef}
             experimentalButtonRef={experimentalButtonRef}
+            onTourStart={() => setTourOpen(true)}
           />
           <div
             style={{
