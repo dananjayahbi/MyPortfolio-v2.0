@@ -13,6 +13,7 @@ import Experience from '@/components/sections/Experience';
 import Education from '@/components/sections/Education';
 import Projects from '@/components/sections/Projects';
 import ContactMe from '@/components/sections/ContactMe';
+import Rain from '@/components/rainEffect/Rain';
 
 export default function DesktopPage() {
   const aboutRef = useRef<HTMLDivElement | null>(null);
@@ -102,6 +103,11 @@ export default function DesktopPage() {
 
   return (
     <div className="flex bg-[#121212] text-white min-h-screen">
+      {/* ✅ Rain Effect Rendered Underneath */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <Rain />
+      </div>
+
       {/* ✅ Animated Sidebar with Stagger Effect */}
       <motion.aside
         initial="hidden"
@@ -132,12 +138,12 @@ export default function DesktopPage() {
       </motion.aside>
 
       {/* Main Content Section with Animations */}
-      <main className="flex flex-1 ml-20">
+      <main className="flex flex-1 ml-20 z-50">
         <div className="w-1/2 flex items-center justify-center fixed left-20 top-0 h-screen p-10">
           <InfoCard scrollToContact={() => scrollToSection(contactRef)} />
         </div>
 
-        <div className="w-1/2 ml-auto bg-[#1E1E1E] p-12 border-l border-gray-800 overflow-y-auto h-screen">
+        <div className="w-1/2 ml-auto bg-transparent p-12 overflow-y-auto h-screen">
           {/* ✅ Animated Content Sections */}
           <motion.section
             ref={aboutRef}
