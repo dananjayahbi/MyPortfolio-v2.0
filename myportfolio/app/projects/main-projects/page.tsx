@@ -1,9 +1,12 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import LoadingTransition from '@/components/loading/LoadingTransition';
 import HeaderMain from '@/components/HeaderMain';
 import { useRouter } from 'next/navigation';
+import { Tour } from 'antd';
+import type { TourProps } from 'antd';
+import '@ant-design/v5-patch-for-react-19';
 
 type ProjectData = {
   id: string;
@@ -26,6 +29,12 @@ const Page = () => {
   const [isDragging, setIsDragging] = useState(false);
   const [startDrag, setStartDrag] = useState({ x: 0, y: 0 });
   const [fadedHexagons, setFadedHexagons] = useState<number[]>([]);
+  const [tourOpen, setTourOpen] = useState<boolean>(false);
+
+  const canvasRef = useRef<HTMLDivElement>(null);
+  const projectTitleRef = useRef<HTMLAnchorElement>(null);
+  const experimentalButtonRef = useRef<HTMLButtonElement>(null!);
+  const homeButtonRef = useRef<HTMLButtonElement>(null!);
 
   const hexRadius = 60;
   const hexHeight = Math.sqrt(3) * hexRadius + 30;
@@ -44,7 +53,17 @@ const Page = () => {
       const interval = setInterval(triggerRandomFading, 2000);
       return () => clearInterval(interval);
     }
-  }, [projects]); // Ensure it only runs after data is set
+  }, [projects]);
+
+  // ✅ Corrected localStorage handling
+  useEffect(() => {
+    const hasSeenTour = localStorage.getItem('hasSeenTour');
+    if (hasSeenTour !== 'true') {
+      setTourOpen(true);
+      localStorage.setItem('hasSeenTour', 'true');
+    }
+    console.log('hasSeenTour:', hasSeenTour);
+  }, []);
 
   // Fetching data from API
   const fetchData = async () => {
@@ -151,10 +170,11 @@ const Page = () => {
   ];
 
   const navigateToProjectPage = (project: ProjectData) => {
-    window.open(
-      `/projects/${project.id}?data=${encodeURIComponent(JSON.stringify(project))}`,
-      '_blank'
-    );
+    router.push(`/projects/${project.id}`);
+  };
+
+  const getElementOrBody = (ref: React.RefObject<HTMLElement>) => {
+    return ref.current ?? document.body;
   };
 
   const handleMouseDown = (e: React.MouseEvent) => {
@@ -182,8 +202,35 @@ const Page = () => {
     setZoom((prevZoom) => Math.min(Math.max(prevZoom * zoomAmount, 0.5), 2));
   };
 
+  const steps: TourProps['steps'] = [
+    {
+      title: 'Move the Canvas',
+      description: 'You can move the canvas by dragging with your mouse.',
+      target: () => getElementOrBody(canvasRef as React.RefObject<HTMLElement>),
+    },
+    {
+      title: 'Project Details',
+      description: 'Click a project title to view its details.',
+      target: () =>
+        getElementOrBody(projectTitleRef as React.RefObject<HTMLElement>),
+    },
+    {
+      title: 'Experimental Projects',
+      description: 'Open Experimental projects',
+      target: () =>
+        getElementOrBody(experimentalButtonRef as React.RefObject<HTMLElement>),
+    },
+    {
+      title: 'Home Button',
+      description: 'Click here to return to the homepage.',
+      target: () =>
+        getElementOrBody(homeButtonRef as React.RefObject<HTMLElement>),
+    },
+  ];
+
   return (
     <div
+      ref={canvasRef}
       style={{
         width: '100vw',
         height: '100vh',
@@ -200,7 +247,11 @@ const Page = () => {
 
       {!isLoading && (
         <div>
-          <HeaderMain />
+          <HeaderMain
+            homeButtonRef={homeButtonRef}
+            experimentalButtonRef={experimentalButtonRef}
+            onTourStart={() => setTourOpen(true)}
+          />
           <div
             style={{
               transform: `translate(${offset.x}px, ${offset.y}px) scale(${zoom})`,
@@ -243,13 +294,22 @@ const Page = () => {
                     transition: 'opacity 1s ease-in-out',
                   }}
                 >
-                  <a href="#" onClick={() => navigateToProjectPage(project)}>
+                  <a
+                    href="#"
+                    ref={index === 0 ? projectTitleRef : undefined}
+                    onClick={() => navigateToProjectPage(project)}
+                  >
                     <p>{project.title}</p>
                   </a>
                 </div>
               );
             })}
           </div>
+          <Tour
+            open={tourOpen}
+            onClose={() => setTourOpen(false)}
+            steps={steps}
+          />
         </div>
       )}
     </div>

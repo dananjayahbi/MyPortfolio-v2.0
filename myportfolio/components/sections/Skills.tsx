@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { Card, Typography, List, Avatar, Divider, Image } from 'antd';
+import { Card, Typography, List, Avatar } from 'antd';
 import { motion } from 'framer-motion';
 import frontendImage from '@/public/images/frontend.png';
 import backendImage from '@/public/images/backend.png';
@@ -10,8 +10,12 @@ import othersImage from '@/public/images/others.png';
 
 const { Title } = Typography;
 
-const Skills = () => {
-  const content = JSON.parse(sessionStorage.getItem('content') || '{}');
+const Skills = ({ windowWidth }: { windowWidth: number }) => {
+  const content =
+    typeof window !== 'undefined'
+      ? JSON.parse(sessionStorage.getItem('content') || '{}')
+      : {};
+
   const skills = content.skills?.subTitles || [];
 
   // Function to determine the appropriate image based on the skill title
@@ -32,6 +36,26 @@ const Skills = () => {
     }
   };
 
+  // ✅ Determine column count based on window width
+  const getColumnCount = () => {
+    if (windowWidth < 475) {
+      return 2; // 2 columns for very small screens
+    } else if (windowWidth < 768) {
+      return 3; // 3 columns for medium screens
+    }
+    return 4; // 4 columns for larger screens
+  };
+
+  // ✅ Determine tile size based on window width
+  const getTileSize = () => {
+    if (windowWidth < 425) {
+      return { width: 100, height: 110, avatarSize: 48 }; // Smaller tile size for very small screens
+    }
+    return { width: 130, height: 140, avatarSize: 64 }; // Default tile size
+  };
+
+  const tileSize = getTileSize();
+
   return (
     <div className="text-white leading-relaxed">
       {/* Skill Categories Section */}
@@ -45,7 +69,14 @@ const Skills = () => {
         ) => (
           <div key={index} style={{ marginBottom: '32px' }}>
             {/* Display title with corresponding image */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '10px' }}>
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '10px',
+                marginBottom: '10px',
+              }}
+            >
               <Avatar
                 src={getCategoryImage(skillCategory.title).src}
                 size={32}
@@ -55,9 +86,9 @@ const Skills = () => {
               </Title>
             </div>
 
-            {/* Animated Cards with Framer Motion */}
+            {/* ✅ Dynamically Adjusting Columns and Tile Size */}
             <List
-              grid={{ gutter: 16, column: 4 }}
+              grid={{ gutter: 16, column: getColumnCount() }}
               dataSource={skillCategory.technologies}
               renderItem={(technology) => (
                 <motion.div
@@ -68,8 +99,8 @@ const Skills = () => {
                     <Card
                       hoverable
                       style={{
-                        width: 130,
-                        height: 140,
+                        width: tileSize.width,
+                        height: tileSize.height,
                         backgroundColor: '#1f1f1f',
                         color: '#fff',
                         borderRadius: '10px',
@@ -80,10 +111,16 @@ const Skills = () => {
                     >
                       <Avatar
                         src={technology.image}
-                        size={64}
+                        size={tileSize.avatarSize}
                         style={{ marginBottom: '10px' }}
                       />
-                      <Title level={5} style={{ color: '#fff' }}>
+                      <Title
+                        level={5}
+                        style={{
+                          color: '#fff',
+                          fontSize: windowWidth < 550 ? '10px' : '16px',
+                        }}
+                      >
                         {technology.name}
                       </Title>
                     </Card>

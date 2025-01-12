@@ -5,8 +5,12 @@ import { Card, Typography } from 'antd';
 
 const { Title } = Typography;
 
-const CurrentlyIam = () => {
-  const content = JSON.parse(sessionStorage.getItem('content') || '{}');
+const CurrentlyIam = ({ windowWidth }: { windowWidth: number }) => {
+  const content =
+    typeof window !== 'undefined'
+      ? JSON.parse(sessionStorage.getItem('content') || '{}')
+      : {};
+
   const currentlyIam = content.currentlyIAm || {};
 
   // Animation Variants for Cards
@@ -29,7 +33,7 @@ const CurrentlyIam = () => {
       initial="hidden"
       animate="visible"
       variants={containerVariants}
-      className="text-white leading-relaxed space-y-10"
+      className="text-white leading-relaxed space-y-10 mt-4"
     >
       {/* Single Card Per Row with Animation */}
       <motion.div
@@ -47,7 +51,7 @@ const CurrentlyIam = () => {
               style={{
                 maxWidth: '600px',
                 margin: 'auto',
-                padding: '10px',
+                padding: windowWidth < 425 ? '0px' : '10px',
                 borderRadius: '15px',
                 backgroundColor: '#1f1f1f',
                 boxShadow: '0 8px 20px rgba(0, 0, 0, 0.3)',
@@ -61,7 +65,13 @@ const CurrentlyIam = () => {
                 pointerEvents: 'none',
               }}
             >
-              <p style={{ fontSize: '1.1rem', fontWeight: '400', whiteSpace: 'normal' }}>
+              <p
+                style={{
+                  fontSize: windowWidth < 425 ? '0.9rem' : '1.1rem',
+                  fontWeight: '400',
+                  whiteSpace: 'normal',
+                }}
+              >
                 {item}
               </p>
             </Card>

@@ -14,7 +14,7 @@ type ProjectData = {
   createdAt: string;
 };
 
-const Projects = ({ windowWidth }: { windowWidth: number }) => {
+const ProjectsM = ({ windowWidth }: { windowWidth: number }) => {
   const [projects, setProjects] = useState<ProjectData[]>([]);
   const [hexagonTitles, setHexagonTitles] = useState<string[]>([
     'Hexagon 1',
@@ -28,6 +28,7 @@ const Projects = ({ windowWidth }: { windowWidth: number }) => {
     '',
     'Wanna see more?',
   ]);
+  const [tappedHexagon, setTappedHexagon] = useState<number | null>(null); // ✅ Tap state instead of hover
   const router = useRouter();
 
   // Fetch project data from the server
@@ -64,7 +65,8 @@ const Projects = ({ windowWidth }: { windowWidth: number }) => {
     fetchData();
   }, []);
 
-  // Hexagon base style
+  // Hexagon base style with rotation applied
+  // ✅ Hexagon Styling
   const hexagonStyle: React.CSSProperties = {
     width: '220px',
     height: '250px',
@@ -82,68 +84,87 @@ const Projects = ({ windowWidth }: { windowWidth: number }) => {
     overflow: 'hidden',
     padding: '10px',
     color: 'black',
+    transform: 'rotate(30deg)', // Rotating the hexagon
   };
 
-  // Hover effect style
-  const hexagonHoverStyle: React.CSSProperties = {
+  // ✅ Inner content rotation fix
+  const innerContentStyle: React.CSSProperties = {
+    transform: 'rotate(-30deg)',
+    width: '100%',
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+  };
+
+  // ✅ Active Hexagon Style (Tap Effect)
+  const hexagonTappedStyle: React.CSSProperties = {
     backgroundColor: '#f6b846',
-    opacity: 0.7,
-    transform: 'scale(1.05)',
+    opacity: 0.9,
+    transform: 'scale(1.05) rotate(30deg)',
     color: 'white',
     fontWeight: 500,
     fontSize: '16px',
     zIndex: 1,
   };
 
-  // State to manage hover effects
-  const [hoveredHexagon, setHoveredHexagon] = useState<number | null>(null);
-
   const handleNavigate = (project?: ProjectData) => {
     if (windowWidth < 750) {
       router.push('/projectsM/main-projects');
     } else if (project) {
       const encodedData = encodeURIComponent(JSON.stringify(project));
-      window.open(`/projects/page?data=${encodedData}`, '_blank');
+      router.push(`/projects/page?data=${encodedData}`);
     } else {
-      window.open('/projects/main-projects', '_blank');
+      router.push('/projects/main-projects');
     }
   };
 
+  // ✅ Updated Hexagon Positioning for Center Alignment
+  const hexagonPositions: React.CSSProperties[] = [
+    { top: '10px', left: `${(windowWidth - 280) / 2}px` },
+    { top: '230px', left: `${(windowWidth - 280) / 2}px` },
+    { top: '450px', left: `${(windowWidth - 280) / 2}px` },
+    { top: '670px', left: `${(windowWidth - 280) / 2}px` },
+  ];
+
+  // ✅ Toggle Tap Effect
+  const handleHexagonTap = (index: number) => {
+    setTappedHexagon(tappedHexagon === index ? null : index);
+  };
+
   return (
-    <div style={{ position: 'relative', height: '600px' }}>
+    <div style={{ position: "relative", height: "880px" }}>
       {hexagonTitles.map((title, index) => {
-        const hexagonPosition: React.CSSProperties = {
+        const hexagonPosition = {
           ...hexagonStyle,
-          ...(index === 1 ? { top: '193px', left: '113px' } : {}),
-          ...(index === 2 ? { top: '193px', left: '339px' } : {}),
-          ...(index === 3 ? { top: '386px', left: '226px' } : {}),
+          ...hexagonPositions[index],
+          ...(tappedHexagon === index ? hexagonTappedStyle : {}),
         };
 
         return (
           <div
             key={index}
-            style={{
-              ...hexagonPosition,
-              ...(hoveredHexagon === index ? hexagonHoverStyle : {}),
-            }}
-            onMouseEnter={() => setHoveredHexagon(index)}
-            onMouseLeave={() => setHoveredHexagon(null)}
+            style={hexagonPosition}
+            onClick={() => handleHexagonTap(index)} // ✅ Changed to tap interaction
           >
-            {hoveredHexagon === index ? (
-              <div>
-                <p>{hexagonDescriptions[index]}</p>
-                <Button
-                  type="primary"
-                  onClick={() => handleNavigate(projects[index])}
-                  style={{ marginTop: "10px" }}
-                >
-                  View
-                  <Send style={{ marginTop: '2px' }} size={12} />
-                </Button>
-              </div>
-            ) : (
-              title
-            )}
+            <div style={innerContentStyle}>
+              {tappedHexagon === index ? (
+                <div>
+                  <p>{hexagonDescriptions[index]}</p>
+                  <Button
+                    type="primary"
+                    onClick={() => handleNavigate(projects[index])}
+                    style={{ marginTop: "10px" }}
+                  >
+                    View
+                    <Send style={{ marginTop: "2px" }} size={12} />
+                  </Button>
+                </div>
+              ) : (
+                title
+              )}
+            </div>
           </div>
         );
       })}
@@ -151,4 +172,4 @@ const Projects = ({ windowWidth }: { windowWidth: number }) => {
   );
 };
 
-export default Projects;
+export default ProjectsM;

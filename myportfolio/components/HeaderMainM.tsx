@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/navigation';
 
-const HeaderExp = () => {
+const HeaderMain = () => {
   const router = useRouter();
   const [windowWidth, setWindowWidth] = useState<number>(0);
 
@@ -42,7 +42,7 @@ const HeaderExp = () => {
       boxShadow: '0 2px 5px rgba(0,0,0,0.3)',
       }}
     >
-      {windowWidth > 500 && <h1>My Experimental Projects</h1>}
+      {windowWidth > 500 && <h1>My Main Projects</h1>}
       <div style={{ display: 'flex', gap: '10px' }}>
       {/* Button for Home Page */}
       <Button onClick={() => router.push('http://localhost:3000')}>
@@ -54,8 +54,8 @@ const HeaderExp = () => {
         onClick={() =>
           router.push(
             windowWidth < 600
-              ? 'http://localhost:3000/projectsM/main-projects'
-              : 'http://localhost:3000/projects/main-projects'
+              ? 'http://localhost:3000/projectsM/exp-projects'
+              : 'http://localhost:3000/projects/exp-projects'
           )
         }
         style={{
@@ -66,11 +66,11 @@ const HeaderExp = () => {
           boxShadow: '0 0 12px rgba(246, 184, 70, 0.8)',
         }}
       >
-        Main Projects 🚀
+        Experimental Projects 🚀
       </Button>
       </div>
     </header>
   );
 };
 
-export default HeaderExp;
+export default HeaderMain;

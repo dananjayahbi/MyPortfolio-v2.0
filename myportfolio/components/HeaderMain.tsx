@@ -1,10 +1,41 @@
-"use client";
-import React from 'react';
-import { Button } from "@/components/ui/button";
+'use client';
+import React, { useState, useEffect } from 'react';
+import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/navigation';
+import { QuestionCircleOutlined } from '@ant-design/icons';
 
-const HeaderMain = () => {
+type HeaderMainProps = {
+  homeButtonRef: React.RefObject<HTMLButtonElement>;
+  experimentalButtonRef: React.RefObject<HTMLButtonElement>;
+  onTourStart: () => void;
+};
+
+const HeaderMain: React.FC<HeaderMainProps> = ({
+  homeButtonRef,
+  experimentalButtonRef,
+  onTourStart,
+}) => {
   const router = useRouter();
+  const [windowWidth, setWindowWidth] = useState<number>(0);
+  const [currentPath, setCurrentPath] = useState<string>('');
+
+  useEffect(() => {
+    setWindowWidth(window.innerWidth);
+    setCurrentPath(window.location.href); // ✅ Capture the current route
+  }, []);
+
+  // Resize event listener
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   return (
     <header
@@ -18,28 +49,42 @@ const HeaderMain = () => {
         color: 'white',
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'space-between',
+        justifyContent: windowWidth < 500 ? 'center' : 'space-between',
         padding: '0 20px',
         zIndex: 1000,
         boxShadow: '0 2px 5px rgba(0,0,0,0.3)',
       }}
     >
-      <h1>My Main Projects</h1>
+      {windowWidth > 500 && <h1>My Main Projects</h1>}
       <div style={{ display: 'flex', gap: '10px' }}>
+        {/* ✅ Conditional rendering for the "?" button */}
+        {windowWidth > 600 && currentPath !== 'http://localhost:3000/projectsM/main-projects' && (
+          <Button onClick={onTourStart}>
+            <QuestionCircleOutlined /> Help
+          </Button>
+        )}
+
         {/* Button for Home Page */}
-        <Button onClick={() => router.push('http://localhost:3000')}>
+        <Button ref={homeButtonRef} onClick={() => router.push('http://localhost:3000')}>
           Home
         </Button>
 
         {/* Button for Experiment Projects with Highlight */}
         <Button
-          onClick={() => router.push('http://localhost:3000/projects/exp-projects')}
+          ref={experimentalButtonRef}
+          onClick={() =>
+            router.push(
+              windowWidth < 600
+                ? 'http://localhost:3000/projectsM/exp-projects'
+                : 'http://localhost:3000/projects/exp-projects'
+            )
+          }
           style={{
-            backgroundColor: '#f6b846',  // Highlighted button color
-            color: '#000',               // Black text for contrast
-            fontWeight: 'bold',          // Bold font for emphasis
+            backgroundColor: '#f6b846',
+            color: '#000',
+            fontWeight: 'bold',
             borderRadius: '8px',
-            boxShadow: '0 0 12px rgba(246, 184, 70, 0.8)', // Glowing effect
+            boxShadow: '0 0 12px rgba(246, 184, 70, 0.8)',
           }}
         >
           Experimental Projects 🚀

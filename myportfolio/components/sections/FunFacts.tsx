@@ -6,8 +6,12 @@ import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 
 const { Title } = Typography;
 
-const FunFacts = () => {
-  const content = JSON.parse(sessionStorage.getItem('content') || '{}');
+const FunFacts = ({ windowWidth }: { windowWidth: number }) => {
+  const content =
+    typeof window !== 'undefined'
+      ? JSON.parse(sessionStorage.getItem('content') || '{}')
+      : {};
+
   const funFacts = content.funFacts || {};
 
   // Carousel Reference for Custom Navigation Control
@@ -71,8 +75,9 @@ const FunFacts = () => {
           style={{
             position: 'absolute',
             top: '50%',
-            left: '-30px',
+            left: '0px',
             width: '40px',
+            height: '40px',
             transform: 'translateY(-50%)',
             zIndex: 10,
             backgroundColor: '#333',
@@ -88,8 +93,9 @@ const FunFacts = () => {
           style={{
             position: 'absolute',
             top: '50%',
-            right: '-30px',
+            right: '0px',
             width: '40px',
+            height: '40px',
             transform: 'translateY(-50%)',
             zIndex: 10,
             backgroundColor: '#333',
