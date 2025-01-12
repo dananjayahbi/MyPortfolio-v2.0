@@ -35,7 +35,11 @@ const hobbyIcons: { [key: string]: React.ReactNode } = {
 };
 
 const MyHobbies = ({ windowWidth }: { windowWidth: number }) => {
-  const content = JSON.parse(sessionStorage.getItem('content') || '{}');
+  const content =
+    typeof window !== 'undefined'
+      ? JSON.parse(sessionStorage.getItem('content') || '{}')
+      : {};
+
   const myHobbies = content.myHobbies || {};
 
   // Animation Variants
@@ -111,7 +115,13 @@ const MyHobbies = ({ windowWidth }: { windowWidth: number }) => {
                 }
                 style={{ backgroundColor: 'transparent', marginBottom: '10px' }}
               />
-                <Title level={4} style={{ color: '#fff', fontSize: windowWidth < 425 ? '16px' : '20px' }}>
+              <Title
+                level={4}
+                style={{
+                  color: '#fff',
+                  fontSize: windowWidth < 425 ? '16px' : '20px',
+                }}
+              >
                 {hobby}
               </Title>
             </Card>

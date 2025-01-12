@@ -7,7 +7,11 @@ import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 const { Title } = Typography;
 
 const FunFacts = ({ windowWidth }: { windowWidth: number }) => {
-  const content = JSON.parse(sessionStorage.getItem('content') || '{}');
+  const content =
+    typeof window !== 'undefined'
+      ? JSON.parse(sessionStorage.getItem('content') || '{}')
+      : {};
+
   const funFacts = content.funFacts || {};
 
   // Carousel Reference for Custom Navigation Control

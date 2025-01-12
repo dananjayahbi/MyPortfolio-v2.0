@@ -170,9 +170,7 @@ const Page = () => {
   ];
 
   const navigateToProjectPage = (project: ProjectData) => {
-    router.push(
-      `/projects/${project.id}?data=${encodeURIComponent(JSON.stringify(project))}`
-    );
+    router.push(`/projects/${project.id}`);
   };
 
   const getElementOrBody = (ref: React.RefObject<HTMLElement>) => {

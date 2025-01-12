@@ -11,7 +11,11 @@ import othersImage from '@/public/images/others.png';
 const { Title } = Typography;
 
 const Skills = ({ windowWidth }: { windowWidth: number }) => {
-  const content = JSON.parse(sessionStorage.getItem('content') || '{}');
+  const content =
+    typeof window !== 'undefined'
+      ? JSON.parse(sessionStorage.getItem('content') || '{}')
+      : {};
+
   const skills = content.skills?.subTitles || [];
 
   // Function to determine the appropriate image based on the skill title
@@ -110,7 +114,13 @@ const Skills = ({ windowWidth }: { windowWidth: number }) => {
                         size={tileSize.avatarSize}
                         style={{ marginBottom: '10px' }}
                       />
-                        <Title level={5} style={{ color: '#fff', fontSize: windowWidth < 550 ? '10px' : '16px' }}>
+                      <Title
+                        level={5}
+                        style={{
+                          color: '#fff',
+                          fontSize: windowWidth < 550 ? '10px' : '16px',
+                        }}
+                      >
                         {technology.name}
                       </Title>
                     </Card>

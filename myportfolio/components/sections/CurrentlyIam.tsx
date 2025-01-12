@@ -6,7 +6,11 @@ import { Card, Typography } from 'antd';
 const { Title } = Typography;
 
 const CurrentlyIam = ({ windowWidth }: { windowWidth: number }) => {
-  const content = JSON.parse(sessionStorage.getItem('content') || '{}');
+  const content =
+    typeof window !== 'undefined'
+      ? JSON.parse(sessionStorage.getItem('content') || '{}')
+      : {};
+
   const currentlyIam = content.currentlyIAm || {};
 
   // Animation Variants for Cards

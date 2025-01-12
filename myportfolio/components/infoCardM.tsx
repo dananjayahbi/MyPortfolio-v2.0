@@ -12,7 +12,11 @@ type InfoCardMProps = {
 
 const InfoCardM: React.FC<InfoCardMProps> = ({ scrollToContact }) => {
   // ✅ Fetch content from session storage
-  const content = JSON.parse(sessionStorage.getItem('content') || '{}');
+  const content =
+    typeof window !== 'undefined'
+      ? JSON.parse(sessionStorage.getItem('content') || '{}')
+      : {};
+
   const author = content.author || { name: 'Unknown', post: 'No Title' };
 
   // ✅ Corrected: Using static file path for public folder

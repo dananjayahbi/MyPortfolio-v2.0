@@ -28,7 +28,9 @@ export default function MobilePage() {
   const contactRef = useRef<HTMLDivElement | null>(null);
 
   const [activeSection, setActiveSection] = useState<string | null>(null);
-  const [windowWidth, setWindowWidth] = useState<number>(window.innerWidth);
+  const [windowWidth, setWindowWidth] = useState<number>(
+    typeof window !== 'undefined' ? window.innerWidth : 1024
+  );
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const sections = [
@@ -41,15 +43,12 @@ export default function MobilePage() {
   ];
 
   useEffect(() => {
-    const handleResize = () => {
+    if (typeof window !== 'undefined') {
       setWindowWidth(window.innerWidth);
-    };
-
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
+      const handleResize = () => setWindowWidth(window.innerWidth);
+      window.addEventListener('resize', handleResize);
+      return () => window.removeEventListener('resize', handleResize);
+    }
   }, []);
 
   useEffect(() => {
@@ -175,7 +174,7 @@ export default function MobilePage() {
 
       {/* ✅ Centered Profile Card */}
       <div className="flex flex-col items-center justify-center p-10 pt-24">
-      {windowWidth < 530 ? (
+        {windowWidth < 530 ? (
           <InfoCardM scrollToContact={() => scrollToSection(contactRef)} />
         ) : (
           <InfoCard scrollToContact={() => scrollToSection(contactRef)} />
@@ -228,7 +227,8 @@ export default function MobilePage() {
           <MyHobbies windowWidth={windowWidth} /> <br /> <br /> <br />
           <h2 className="text-3xl font-bold text-yellow-400 mt-4">
             Fun Facts About Me
-          </h2> <br />
+          </h2>{' '}
+          <br />
           <FunFacts windowWidth={windowWidth} /> <br /> <br /> <br />
         </motion.section>
 

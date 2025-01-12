@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import HeaderMain from '@/components/HeaderMain';
+import HeaderMainM from '@/components/HeaderMainM';
 import { Button, Card, Spin, ConfigProvider } from 'antd';
 import { Send } from 'lucide-react';
 import { LoadingOutlined } from '@ant-design/icons';
@@ -84,7 +84,7 @@ const page = () => {
   return (
     <div className="flex flex-col min-h-screen bg-[#121212] text-white">
       {/* ✅ Header */}
-      <HeaderMain />
+      <HeaderMainM />
 
       {/* ✅ Loading Spinner */}
       {loading ? (

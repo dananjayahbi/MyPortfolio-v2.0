@@ -1,4 +1,5 @@
 'use client';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Card as ShadcnCard } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -12,7 +13,11 @@ type InfoCardMProps = {
 
 const InfoCard: React.FC<InfoCardMProps> = ({ scrollToContact }) => {
   // ✅ Fetch content from session storage
-  const content = JSON.parse(sessionStorage.getItem('content') || '{}');
+  const content =
+    typeof window !== 'undefined'
+      ? JSON.parse(sessionStorage.getItem('content') || '{}')
+      : {};
+
   const author = content.author || { name: 'Unknown', post: 'No Title' };
 
   // ✅ Corrected: Using static file path for public folder
