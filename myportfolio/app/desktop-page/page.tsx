@@ -143,6 +143,7 @@ export default function DesktopPage() {
           <InfoCard scrollToContact={() => scrollToSection(contactRef)} />
         </div>
 
+        {/* <div className="w-1/2 ml-auto bg-[#1E1E1E] p-12 border-l border-gray-800 overflow-y-auto h-screen"> */}
         <div className="w-1/2 ml-auto bg-transparent p-12 overflow-y-auto h-screen">
           {/* ✅ Animated Content Sections */}
           <motion.section

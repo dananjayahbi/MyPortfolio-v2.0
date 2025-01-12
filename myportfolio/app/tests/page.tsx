@@ -1,11 +1,11 @@
-"use client";
+import React from 'react'
 
-import Rain from "@/components/rainEffect/Rain";
+type Props = {}
 
-export default function Home() {
+const page = (props: Props) => {
   return (
-    <main>
-      <Rain />
-    </main>
-  );
+    <div>page</div>
+  )
 }
+
+export default page

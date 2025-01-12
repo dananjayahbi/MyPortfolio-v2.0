@@ -27,22 +27,30 @@ const ProjectPage = () => {
   console.log('Extracted Project ID:', projectId);
 
   useEffect(() => {
-    if (projectId) {
-      fetch(`http://localhost:3000/api/projects/main/${projectId}`)
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error('Project not found');
-          }
-          return response.json();
-        })
-        .then((data) => {
+    const fetchProject = async () => {
+      try {
+        const response = await fetch(`http://localhost:3000/api/projects/main/${projectId}`);
+        if (response.ok) {
+          const data = await response.json();
           setProject(data);
-          setLoading(false);
-        })
-        .catch((error) => {
-          console.error('Error fetching project:', error);
-          setLoading(false);
-        });
+        } else {
+          console.log('Project not found in main, trying experimental');
+          const experimentalResponse = await fetch(`http://localhost:3000/api/projects/experimental/${projectId}`);
+          if (!experimentalResponse.ok) {
+            throw new Error('Project not found in both main and experimental');
+          }
+          const experimentalData = await experimentalResponse.json();
+          setProject(experimentalData);
+        }
+      } catch (error) {
+        console.error('Error fetching project:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (projectId) {
+      fetchProject();
     }
   }, [projectId]);
 

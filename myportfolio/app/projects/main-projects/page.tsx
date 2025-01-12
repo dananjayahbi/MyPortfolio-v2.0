@@ -237,7 +237,7 @@ const Page = () => {
         height: '100vh',
         overflow: 'hidden',
         cursor: isDragging ? 'grabbing' : 'grab',
-        backgroundColor: '#373940',
+        backgroundColor: '#121212',
       }}
       onMouseDown={handleMouseDown}
       onMouseMove={handleMouseMove}
