@@ -1,11 +1,13 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import HeaderMainM from '@/components/HeaderMainM';
 import { Button, Card, Spin, ConfigProvider } from 'antd';
 import { Send } from 'lucide-react';
 import { LoadingOutlined } from '@ant-design/icons';
 import placeholder from '@/public/images/image-placeholder.png';
+import '@ant-design/v5-patch-for-react-19';
 
 type ProjectData = {
   id: string;
@@ -21,6 +23,7 @@ const antIcon = (
 );
 
 const page = () => {
+  const router = useRouter();
   const [projects, setProjects] = useState<ProjectData[]>([]);
   const [visibleProjects, setVisibleProjects] = useState<ProjectData[]>([]);
   const [projectsLoaded, setProjectsLoaded] = useState(5);
@@ -79,6 +82,10 @@ const page = () => {
     const nextBatch = projects.slice(0, visibleProjects.length + 5);
     setVisibleProjects(nextBatch);
     setProjectsLoaded(nextBatch.length);
+  };
+
+  const navigateToProjectPage = (project: ProjectData) => {
+    window.open(`/projectsM/${project.id}`, '_blank');
   };
 
   return (
@@ -146,7 +153,7 @@ const page = () => {
                     <Button
                       type="primary"
                       block
-                      onClick={() => window.open(project.githubLink, '_blank')}
+                      onClick={() => navigateToProjectPage(project)}
                       style={{ color: '#000' }}
                     >
                       View Project{' '}

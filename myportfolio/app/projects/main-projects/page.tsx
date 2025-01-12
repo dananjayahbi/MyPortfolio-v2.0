@@ -170,7 +170,8 @@ const Page = () => {
   ];
 
   const navigateToProjectPage = (project: ProjectData) => {
-    router.push(`/projects/${project.id}`);
+    // router.push(`/projects/${project.id}`);
+    window.open(`/projects/${project.id}`, '_blank');
   };
 
   const getElementOrBody = (ref: React.RefObject<HTMLElement>) => {
