@@ -1,10 +1,12 @@
 'use client';
 
-import { useSearchParams, useParams } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import React, { useState, useEffect } from 'react';
 import ImageGrid from '@/components/ImageGrid';
 import InfoCardLeft from '@/components/projectInfoCard';
 import HeaderProjectInfo from '@/components/HeaderProjectInfo';
+import { LoadingOutlined } from '@ant-design/icons';
+import { Spin } from 'antd';
 
 type ProjectData = {
   id: string;
@@ -43,8 +45,22 @@ const ProjectPage = () => {
     }
   }, [projectId]);
 
+  const antIcon = <LoadingOutlined style={{ fontSize: 48, color: '#f6b846' }} spin />;
+
   if (loading) {
-    return <p>Loading project data...</p>;
+    return (
+      <div
+        style={{ 
+          display: 'flex', 
+          justifyContent: 'center', 
+          alignItems: 'center', 
+          height: '100vh', 
+          backgroundColor: '#1e1e1e' 
+        }}
+      >
+        <Spin indicator={antIcon} />
+      </div>
+    );
   }
 
   if (!project) {

@@ -22,7 +22,9 @@ export async function PUT(request: Request) {
 
         const existingContent = JSON.parse(fs.readFileSync(contentFilePath, 'utf-8'));
 
-        // ✅ Handling Skills Section with Updated Logic for Technologies
+        /**
+         * ✅ Handling Skills Section with Updated Logic for Technologies
+         */
         if (updates.skills?.subTitles) {
             updates.skills.subTitles.forEach((newSubTitle: { title: string; technologies: { name: string; image: string }[] }) => {
                 const existingSubTitle = existingContent.skills.subTitles.find(
@@ -50,7 +52,9 @@ export async function PUT(request: Request) {
             });
         }
 
-        // ✅ Handling Full Array Replacement Sections (`currentlyIAm`, `myHobbies`, etc.)
+        /**
+         * ✅ Handling Full Array Replacement Sections (`currentlyIAm`, `myHobbies`, `funFacts`, `experience`, `education`)
+         */
         const arraySections = ['currentlyIAm', 'myHobbies', 'funFacts', 'experience', 'education'];
         arraySections.forEach((section) => {
             if (updates[section]?.texts) {
@@ -58,14 +62,36 @@ export async function PUT(request: Request) {
             }
         });
 
-        // ✅ Handling Contact Section (Only Provided Fields Should Update)
+        /**
+         * ✅ Handling Contact Section (Only Provided Fields Should Update)
+         */
         if (updates.contact) {
             Object.entries(updates.contact).forEach(([key, value]) => {
                 existingContent.contact[key] = value;
             });
         }
 
-        // ✅ Write Updated Content Back to the JSON File
+        /**
+         * ✅ Handling Author Section (Only Provided Fields Should Update)
+         */
+        if (updates.author) {
+            Object.entries(updates.author).forEach(([key, value]) => {
+                existingContent.author[key] = value;
+            });
+        }
+
+        /**
+         * ✅ Handling About Me Section (Only Provided Fields Should Update)
+         */
+        if (updates.aboutMe) {
+            Object.entries(updates.aboutMe).forEach(([key, value]) => {
+                existingContent.aboutMe[key] = value;
+            });
+        }
+
+        /**
+         * ✅ Write Updated Content Back to the JSON File
+         */
         fs.writeFileSync(contentFilePath, JSON.stringify(existingContent, null, 2));
         return NextResponse.json({ message: "Portfolio content updated successfully", updatedContent: existingContent });
     } catch (error) {

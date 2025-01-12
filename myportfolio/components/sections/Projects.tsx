@@ -102,8 +102,8 @@ const Projects = ({ windowWidth }: { windowWidth: number }) => {
     if (windowWidth < 750) {
       router.push('/projectsM/main-projects');
     } else if (project) {
-      const encodedData = encodeURIComponent(JSON.stringify(project));
-      window.open(`/projects/page?data=${encodedData}`, '_blank');
+      const projectId = project.id;
+      window.open(`/projects/${projectId}`, '_blank');
     } else {
       window.open('/projects/main-projects', '_blank');
     }

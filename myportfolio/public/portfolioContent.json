@@ -1,9 +1,9 @@
 {
   "author": {
-    "name": "John Doe",
+    "name": "Isuru Dananjaya",
     "post": "Web Developer",
     "dob": "01-01-1990",
-    "age": 31,
+    "age": 25,
     "freelance": "Available",
     "residence": "LK",
     "email": "test@test.com",
@@ -12,7 +12,7 @@
   },
   "aboutMe": {
     "title": "About Me",
-    "description": "A passionate web developer."
+    "description": "this is the description updated"
   },
   "skills": {
     "title": "Skills",
@@ -154,7 +154,7 @@
   },
   "contact": {
     "email": "johndoe@example.com",
-    "phone": "123-987-6543",
+    "phone": "123-987",
     "linkedin": "https://linkedin.com/in/johndoe",
     "github": "https://github.com/johndoe",
     "facebook": "https://facebook.com/johndoe"
