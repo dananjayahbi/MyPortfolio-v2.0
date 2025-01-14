@@ -7,6 +7,9 @@ import { verifyToken } from '@/lib/jwt';
 const prisma = new PrismaClient();
 const uploadDir = path.join(process.cwd(), 'public/uploads/mainProjects');
 
+// Load the base URL from the environment variable, defaulting to localhost
+const BASE_URL = process.env.BASE_URL || 'http://localhost:3000';
+
 if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir, { recursive: true });
 
 /**
@@ -36,7 +39,10 @@ export async function POST(request: Request) {
         const buffer = Buffer.from(await file.arrayBuffer());
         const filePath = path.join(projectDir, file.name);
         fs.writeFileSync(filePath, buffer);
-        savedPaths.push(`/uploads/mainProjects/${project.id}/${file.name}`);
+        
+        // Use the BASE_URL for absolute URLs
+        const absoluteUrl = `${BASE_URL}/uploads/mainProjects/${project.id}/${file.name}`;
+        savedPaths.push(absoluteUrl);
     }
 
     await prisma.mainProject.update({

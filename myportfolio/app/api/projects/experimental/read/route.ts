@@ -1,9 +1,12 @@
 import { PrismaClient } from '@prisma/client';
-import { NextResponse } from 'next/server';
+import { corsHeaders } from '@/lib/cors';
 
 const prisma = new PrismaClient();
 
 export async function GET() {
     const projects = await prisma.experimentalProject.findMany();
-    return NextResponse.json(projects);
+    return new Response(JSON.stringify(projects), {
+        status: 200,
+        headers: corsHeaders
+    });
 }

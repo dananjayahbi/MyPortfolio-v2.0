@@ -1,57 +1,35 @@
 import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
-import { verifyToken } from '@/lib/jwt';
 
-export function middleware(req: NextRequest) {
-  const res = NextResponse.next();
+const allowedOrigins = ['http://localhost:5173'];
 
-  const allowedOrigins = ['http://localhost:5173'];
-  const origin = req.headers.get('origin');
+export function middleware(request: Request) {
+  const origin = request.headers.get('origin');
 
-  if (origin && allowedOrigins.includes(origin)) {
-    res.headers.set('Access-Control-Allow-Origin', origin);
-    res.headers.set(
-      'Access-Control-Allow-Methods',
-      'GET, POST, PUT, DELETE, OPTIONS'
-    );
-    res.headers.set(
-      'Access-Control-Allow-Headers',
-      'Content-Type, Authorization'
-    );
-  }
+  if (request.method === 'OPTIONS') {
+    if (origin && allowedOrigins.includes(origin)) {
+      const response = new Response(null, { status: 204 });
+      response.headers.set('Access-Control-Allow-Origin', origin);
+      response.headers.set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+      response.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+      response.headers.set('Access-Control-Allow-Credentials', 'true');
+      return response;
+    }
 
-  // Handle preflight requests
-  if (req.method === 'OPTIONS') {
-    return new Response(null, {
-      headers: res.headers,
-      status: 204,
+    return new Response('CORS Error: This origin is not allowed.', {
+      status: 403,
     });
   }
 
-  const token = req.headers.get('Authorization')?.split(' ')[1];
-
-  // If no token provided, deny access
-  if (!token) {
-    return NextResponse.json(
-      { message: 'Unauthorized: Token missing' },
-      { status: 401, headers: res.headers }
-    );
+  const response = NextResponse.next();
+  if (origin && allowedOrigins.includes(origin)) {
+    response.headers.set('Access-Control-Allow-Origin', origin);
+    response.headers.set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    response.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    response.headers.set('Access-Control-Allow-Credentials', 'true');
   }
-
-  // Verify the token
-  const isValid = verifyToken(token);
-  if (!isValid) {
-    return NextResponse.json(
-      { message: 'Unauthorized: Invalid token' },
-      { status: 401, headers: res.headers }
-    );
-  }
-
-  // If token is valid, continue to the next handler
-  return res;
+  return response;
 }
 
-// Applying CORS and token protection to all routes
 export const config = {
   matcher: '/api/:path*',
 };

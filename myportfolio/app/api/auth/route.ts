@@ -1,24 +1,15 @@
 import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcrypt';
 import { generateToken, verifyToken } from '@/lib/jwt';
+import { corsHeaders, handleOptions } from '@/lib/cors';
 
 const prisma = new PrismaClient();
 const SALT_ROUNDS = 10;
 
-// Updated CORS handling with specific origin
-const corsHeaders = {
-  'Content-Type': 'application/json',
-  'Access-Control-Allow-Origin': 'http://localhost:5173',
-  'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-  'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-  'Access-Control-Allow-Credentials': 'true',
-};
 
-/**
- * Handle OPTIONS requests for CORS preflight
- */
+//Handle OPTIONS requests for CORS preflight
 export async function OPTIONS() {
-  return new Response(null, { status: 204, headers: corsHeaders });
+  return handleOptions(); // Reuse the shared CORS logic
 }
 
 /**
