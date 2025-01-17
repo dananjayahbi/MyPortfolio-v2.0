@@ -1,18 +1,18 @@
 {
   "author": {
     "name": "Isuru Dananjaya",
-    "post": "Software Engineer",
-    "dob": "08-08-2000",
+    "post": "Full-Stack Web Developer",
+    "dob": "11-08-2000",
     "age": "24",
     "freelance": "Available",
     "residence": "LK",
-    "email": "test@test.com",
-    "phone": "123-456-7890",
-    "myStatus": "I'm a passionate web developer."
+    "email": "dananjayahbi@gmail.com",
+    "phone": "(+94) 71 4817470",
+    "myStatus": "I'm a Full-Stack Web Developer."
   },
   "aboutMe": {
     "title": "About Me",
-    "description": "this is the description updated"
+    "description": "I am a passionate Full-Stack Developer who has been working on websites for more than three years. Currently, I am an undergraduate student at SLIIT University pursuing a degree in information technology (Final Year). I am an active learner who enjoys experimenting with new tools and frameworks to expand my skill set. I am experienced in technologies such as React, Node.js, MongoDB, Python, Flask, Next.js, and many more. My abilities to solve problems, think creatively and communicate clearly allow me to simplify difficult ideas and make valuable contributions to group projects. Whether delving into front-end or back-end work, I welcome all opportunities to take my abilities to new heights by accepting challenges that push me beyond what I already know. As a self-starter with a propensity for rapid learning, I readily adapt to emerging technologies and focus my efforts on delivering innovative solutions that create real impact. My goal remains one of continuous growth both as a professional and as a thinker, while exploring possibilities to contribute my talents to meaningful projects and new opportunities within the exciting technology industry."
   },
   "skills": {
     "title": "Skills",
@@ -29,16 +29,40 @@
             "image": "https://images-cdn.openxcell.com/wp-content/uploads/2024/07/24154156/dango-inner-2.webp"
           },
           {
-            "name": "HTML",
-            "image": "https://img.icons8.com/?size=100&id=20909&format=png&color=000000"
-          },
-          {
             "name": "Vue.js",
             "image": "https://img.icons8.com/?size=100&id=eETV3RNHVrWA&format=png&color=000000"
           },
           {
-            "name": "React U",
-            "image": "https://img.icons8.com/?size=100&id=asWSSTBrDlTW&format=png&color=000000"
+            "name": "HTML",
+            "image": "https://img.icons8.com/?size=100&id=20909&format=png&color=000000"
+          },
+          {
+            "name": "CSS",
+            "image": "https://img.icons8.com/color/480/css3.png"
+          },
+          {
+            "name": "JavaScript",
+            "image": "https://img.icons8.com/color/480/javascript--v1.png"
+          },
+          {
+            "name": "MaterialUI",
+            "image": "https://www.npmjs.com/npm-avatar/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdmF0YXJVUkwiOiJodHRwczovL3MuZ3JhdmF0YXIuY29tL2F2YXRhci9iYjEzYWViNTFjNTQ0MjFhN2E1NTQwYTcxMzI4OTVkYz9zaXplPTQ5NiZkZWZhdWx0PXJldHJvIn0.FnWJxluT5VvnfpnQsm2K2I1GK-k0_NAmWtu3G-u3fE0"
+          },
+          {
+            "name": "Ant Design",
+            "image": "https://static-00.iconduck.com/assets.00/ant-design-icon-2048x2046-tx16mhk6.png"
+          },
+          {
+            "name": "Tailwind",
+            "image": "https://img.icons8.com/?size=512&id=WoopfRcDj3RF&format=png"
+          },
+          {
+            "name": "ElectronJS",
+            "image": "https://static-00.iconduck.com/assets.00/electron-icon-2048x2048-ob62t2la.png"
+          },
+          {
+            "name": "TypeScript",
+            "image": "https://img.icons8.com/?size=100&id=uJM6fQYqDaZK&format=png&color=000000"
           }
         ]
       },
@@ -58,8 +82,12 @@
             "image": "https://img.icons8.com/?size=100&id=bosfpvRzNOG8&format=png&color=000000"
           },
           {
-            "name": "GraphQL",
-            "image": "https://img.icons8.com/?size=100&id=KRA1PoZgRrca&format=png&color=000000"
+            "name": "Python",
+            "image": "https://cdn3.iconfinder.com/data/icons/logos-and-brands-adobe/512/267_Python-512.png"
+          },
+          {
+            "name": "Flask",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmD38KsMgEwahtWc_Nfs5ZVktP9dBc36MUZA&s"
           }
         ]
       },
@@ -82,6 +110,10 @@
           {
             "name": "Git",
             "image": "https://img.icons8.com/?size=100&id=20906&format=png&color=000000"
+          },
+          {
+            "name": "GitHub",
+            "image": "https://banner2.cleanpng.com/20180920/aey/kisspng-scalable-vector-graphics-github-computer-icons-log-github-brand-octacat-social-svg-png-icon-free-down-5ba35d7db54fe5.6273953815374329577427.jpg"
           }
         ]
       },
@@ -89,16 +121,28 @@
         "title": "Others",
         "technologies": [
           {
-            "name": "TypeScript",
-            "image": "https://img.icons8.com/?size=100&id=uJM6fQYqDaZK&format=png&color=000000"
-          },
-          {
             "name": "SASS",
             "image": "https://img.icons8.com/?size=100&id=NaQGFHVLR7a8&format=png&color=000000"
           },
           {
             "name": "REST API",
             "image": "https://img.icons8.com/?size=100&id=45057&format=png&color=000000"
+          },
+          {
+            "name": "Postman",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-TB9d5YXwtKhv4NWbpeTBVveYvcxu9gMJng&s"
+          },
+          {
+            "name": "Figma",
+            "image": "https://cdn4.iconfinder.com/data/icons/logos-brands-in-colors/3000/figma-logo-512.png"
+          },
+          {
+            "name": "Photoshop",
+            "image": "https://w7.pngwing.com/pngs/548/34/png-transparent-adobe-photoshop-macos-bigsur-icon-thumbnail.png"
+          },
+          {
+            "name": "ML/DL (learning)",
+            "image": "https://cdn-icons-png.flaticon.com/512/7017/7017532.png"
           }
         ]
       }
@@ -107,14 +151,13 @@
   "currentlyIAm": {
     "title": "Currently I Am",
     "texts": [
-      "Learning TypeScript Learning TypeScript Learning TypeScript Learning TypeScript",
-      "Building Projects",
-      "Looking for a job",
-      "Freelancing",
-      "Working on Open Source Projects",
-      "Working on my Portfolio",
-      "Working on my Blog",
-      "Working on my YouTube Channel"
+      "Trying to complete my University Research Project on Machine Learning and Deep Learning.",
+      "Working on a personal project to improve my skills.",
+      "Learning AI models fine-tuning.",
+      "Learning about developing installable desktop applications using Electron.js and python tkinter.",
+      "Trying to create standalone portable server applications using Node.js and Express.js for small-scale projectsand my personal projects.",
+      "Learning more about TypeScript to level up it to my satisfaction level.",
+      "Trying to use AI models in my personal projects to improve the user experience (There are some projects in my github repositories)."
     ]
   },
   "myHobbies": {
@@ -125,42 +168,38 @@
       "Watching Movies",
       "Playing Video Games",
       "Listening to Music",
-      "Traveling",
-      "Photography"
+      "Traveling"
     ]
   },
   "funFacts": {
     "title": "Fun Facts",
     "texts": [
-      "I love coding challenges!",
-      "I love to learn new technologies!",
-      "I love to build projects!",
-      "I love to help others!",
-      "I love to share my knowledge!"
+      "Maintaining a playground repository to test my crazy ideas.",
+      "I am a huge fan of the Marvel Cinematic Universe.",
+      "I want every work as perfect as possible."
     ]
   },
   "experience": {
     "title": "Experience",
     "texts": [
-      "3 Years in Web Development",
-      "1 Year in Mobile Development",
-      "1 Year in Game Development",
-      "2 Year in Desktop Developmentfd"
+      "Worked as an Intern Software Engineer at a software company called \"Intrada Technologies\" for 6 months.",
+      "Freelancing for nearly 2 years on Fiverr.",
+      "Working on my personal projects (Feel free to check my GitHub repositories).",
+      "Working on my University Final Year Research Project.",
+      "Developing WordPress websites for clients (Not a thing I usually do, but I have done some projects for clients)."
     ]
   },
   "education": {
     "title": "Education",
     "texts": [
-      "B.Sc. in Computer Science",
-      "M.Sc. in Computer Science",
-      "Ph.D. in Computer Science"
+      "Currently an undergraduate student at SLIIT university pursuing a degree in Information Technology."
     ]
   },
   "contact": {
-    "email": "johndoeupd@example.com",
-    "phone": "123-456-7890",
-    "linkedin": "https://linkedin.com/in/johndoe",
-    "github": "https://github.com/johndoe",
-    "facebook": "https://facebook.com/johndoe"
+    "email": "dananjayahbi@gmail.com",
+    "phone": "(+94) 71 4817470",
+    "linkedin": " https://www.linkedin.com/in/isuru-dananjaya-6b5134217/",
+    "github": " https://github.com/dananjayahbi",
+    "facebook": "https://www.facebook.com/isuru.dananjaya.969300/"
   }
 }

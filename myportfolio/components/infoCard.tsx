@@ -5,7 +5,7 @@ import { Card as ShadcnCard } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Background from '@/public/images/background.jpg';
 import me from '@/public/images/me.png';
-import { Download, Send, Github, Facebook, Instagram } from 'lucide-react';
+import { Download, Send, Github, Facebook, Linkedin } from 'lucide-react';
 
 type InfoCardMProps = {
   scrollToContact: () => void;
@@ -84,7 +84,7 @@ const InfoCard: React.FC<InfoCardMProps> = ({ scrollToContact }) => {
               target="_blank"
               className="hover:text-white opacity-80"
             >
-              <Instagram />
+              <Linkedin />
             </a>
           </div>
 

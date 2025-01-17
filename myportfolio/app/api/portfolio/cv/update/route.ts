@@ -1,6 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { promises as fs } from 'fs';
 import path from 'path';
+import { corsHeaders, handleOptions } from '@/lib/cors';
+
+// Handle OPTIONS requests for CORS preflight
+export async function OPTIONS() {
+  return handleOptions(); // Reuse the shared CORS logic
+}
 
 export async function POST(req: NextRequest) {
   try {
@@ -14,7 +20,7 @@ export async function POST(req: NextRequest) {
     if (!file) {
       return NextResponse.json(
         { message: 'No file uploaded' },
-        { status: 400 }
+        { status: 400, headers: corsHeaders }
       );
     }
 
@@ -22,7 +28,7 @@ export async function POST(req: NextRequest) {
     if (file.type !== 'application/pdf') {
       return NextResponse.json(
         { message: 'Only PDF files are allowed' },
-        { status: 400 }
+        { status: 400, headers: corsHeaders }
       );
     }
 
@@ -34,13 +40,13 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json(
       { message: 'CV successfully replaced' },
-      { status: 200 }
+      { status: 200, headers: corsHeaders }
     );
   } catch (error) {
     console.error('Error replacing CV:', error);
     return NextResponse.json(
       { message: 'Failed to replace CV' },
-      { status: 500 }
+      { status: 500, headers: corsHeaders }
     );
   }
 }
