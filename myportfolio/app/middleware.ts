@@ -1,26 +1,35 @@
-// middleware.ts
 import { NextResponse } from 'next/server';
-import { verifyToken } from '@/lib/jwt';
+
+const allowedOrigins = ['http://localhost:5173'];
 
 export function middleware(request: Request) {
-    const token = request.headers.get('Authorization')?.split(' ')[1];
+  const origin = request.headers.get('origin');
 
-    // If no token provided, deny access
-    if (!token) {
-        return NextResponse.json({ message: 'Unauthorized: Token missing' }, { status: 401 });
+  if (request.method === 'OPTIONS') {
+    if (origin && allowedOrigins.includes(origin)) {
+      const response = new Response(null, { status: 204 });
+      response.headers.set('Access-Control-Allow-Origin', origin);
+      response.headers.set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+      response.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+      response.headers.set('Access-Control-Allow-Credentials', 'true');
+      return response;
     }
 
-    // Verify the token
-    const isValid = verifyToken(token);
-    if (!isValid) {
-        return NextResponse.json({ message: 'Unauthorized: Invalid token' }, { status: 401 });
-    }
+    return new Response('CORS Error: This origin is not allowed.', {
+      status: 403,
+    });
+  }
 
-    // If token is valid, continue to the next handler
-    return NextResponse.next();
+  const response = NextResponse.next();
+  if (origin && allowedOrigins.includes(origin)) {
+    response.headers.set('Access-Control-Allow-Origin', origin);
+    response.headers.set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    response.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    response.headers.set('Access-Control-Allow-Credentials', 'true');
+  }
+  return response;
 }
 
-// Protecting all routes under /api/admin/*
 export const config = {
-    matcher: ['/api/admin/:path*'],
+  matcher: '/api/:path*',
 };

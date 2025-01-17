@@ -1,10 +1,12 @@
 'use client';
 
-import { useSearchParams, useParams } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import React, { useState, useEffect } from 'react';
 import ImageGrid from '@/components/ImageGrid';
 import InfoCardLeft from '@/components/projectInfoCard';
 import HeaderProjectInfo from '@/components/HeaderProjectInfo';
+import { LoadingOutlined } from '@ant-design/icons';
+import { Spin } from 'antd';
 
 type ProjectData = {
   id: string;
@@ -24,27 +26,49 @@ const ProjectPage = () => {
   console.log('Extracted Project ID:', projectId);
 
   useEffect(() => {
-    if (projectId) {
-      fetch(`http://localhost:3000/api/projects/main/${projectId}`)
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error('Project not found');
-          }
-          return response.json();
-        })
-        .then((data) => {
+    const fetchProject = async () => {
+      try {
+        const response = await fetch(`http://localhost:3000/api/projects/main/${projectId}`);
+        if (response.ok) {
+          const data = await response.json();
           setProject(data);
-          setLoading(false);
-        })
-        .catch((error) => {
-          console.error('Error fetching project:', error);
-          setLoading(false);
-        });
+        } else {
+          console.log('Project not found in main, trying experimental');
+          const experimentalResponse = await fetch(`http://localhost:3000/api/projects/experimental/${projectId}`);
+          if (!experimentalResponse.ok) {
+            throw new Error('Project not found in both main and experimental');
+          }
+          const experimentalData = await experimentalResponse.json();
+          setProject(experimentalData);
+        }
+      } catch (error) {
+        console.error('Error fetching project:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (projectId) {
+      fetchProject();
     }
   }, [projectId]);
 
+  const antIcon = <LoadingOutlined style={{ fontSize: 48, color: '#f6b846' }} spin />;
+
   if (loading) {
-    return <p>Loading project data...</p>;
+    return (
+      <div
+        style={{ 
+          display: 'flex', 
+          justifyContent: 'center', 
+          alignItems: 'center', 
+          height: '100vh', 
+          backgroundColor: '#1e1e1e' 
+        }}
+      >
+        <Spin indicator={antIcon} />
+      </div>
+    );
   }
 
   if (!project) {

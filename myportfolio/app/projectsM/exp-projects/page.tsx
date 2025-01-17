@@ -6,6 +6,7 @@ import { Button, Card, Spin, ConfigProvider } from 'antd';
 import { Send } from 'lucide-react';
 import { LoadingOutlined } from '@ant-design/icons';
 import placeholder from '@/public/images/image-placeholder.png';
+import '@ant-design/v5-patch-for-react-19';
 
 type ProjectData = {
   id: string;
@@ -81,6 +82,10 @@ const page = () => {
     setProjectsLoaded(nextBatch.length);
   };
 
+  const navigateToProjectPage = (project: ProjectData) => {
+    window.open(`/projectsM/${project.id}`, '_blank');
+  };
+
   return (
     <div className="flex flex-col min-h-screen bg-[#121212] text-white">
       {/* ✅ Header Changed to HeaderExp */}
@@ -148,7 +153,7 @@ const page = () => {
                     <Button
                       type="primary"
                       block
-                      onClick={() => window.open(project.githubLink, '_blank')}
+                      onClick={() => navigateToProjectPage(project)}
                       style={{ color: '#000' }}
                     >
                       View Project{' '}
