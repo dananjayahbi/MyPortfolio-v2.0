@@ -4,6 +4,7 @@ import { Spin, message } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 import DesktopPage from './desktop-page/page';
 import MobilePage from './mobile-page/page';
+import { BASE_URL } from '../lib/base';
 import '@ant-design/v5-patch-for-react-19';
 
 export default function HomePage() {
@@ -13,7 +14,7 @@ export default function HomePage() {
     useEffect(() => {
         const fetchPortfolioContent = async () => {
             try {
-                const response = await fetch('http://localhost:3000/api/portfolio/content/get');
+                const response = await fetch(`${BASE_URL}/api/portfolio/content/get`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch portfolio content');
                 }

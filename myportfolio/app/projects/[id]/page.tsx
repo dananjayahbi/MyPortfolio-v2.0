@@ -7,6 +7,7 @@ import InfoCardLeft from '@/components/projectInfoCard';
 import HeaderProjectInfo from '@/components/HeaderProjectInfo';
 import { LoadingOutlined } from '@ant-design/icons';
 import { Spin } from 'antd';
+import { BASE_URL } from '@/lib/base';
 
 type ProjectData = {
   id: string;
@@ -28,13 +29,13 @@ const ProjectPage = () => {
   useEffect(() => {
     const fetchProject = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/api/projects/main/${projectId}`);
+        const response = await fetch(`${BASE_URL}/api/projects/main/${projectId}`);
         if (response.ok) {
           const data = await response.json();
           setProject(data);
         } else {
           console.log('Project not found in main, trying experimental');
-          const experimentalResponse = await fetch(`http://localhost:3000/api/projects/experimental/${projectId}`);
+          const experimentalResponse = await fetch(`${BASE_URL}/api/projects/experimental/${projectId}`);
           if (!experimentalResponse.ok) {
             throw new Error('Project not found in both main and experimental');
           }

@@ -6,6 +6,7 @@ import { Button, Card, Spin, ConfigProvider } from 'antd';
 import { Send } from 'lucide-react';
 import { LoadingOutlined } from '@ant-design/icons';
 import placeholder from '@/public/images/image-placeholder.png';
+import { BASE_URL } from '@/lib/base';
 import '@ant-design/v5-patch-for-react-19';
 
 type ProjectData = {
@@ -52,7 +53,7 @@ const page = () => {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        'http://localhost:3000/api/projects/experimental/read' // ✅ Updated API Endpoint
+        `${BASE_URL}/api/projects/experimental/read`
       );
       const data: ProjectData[] = await response.json();
       setProjects(data);

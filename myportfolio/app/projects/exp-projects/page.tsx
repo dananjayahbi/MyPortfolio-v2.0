@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import LoadingTransition from '@/components/loading/LoadingTransition';
 import HeaderExp from '@/components/HeaderExp';
 import { useRouter } from 'next/navigation';
+import { BASE_URL } from '@/lib/base';
 
 type ProjectData = {
   id: string;
@@ -50,7 +51,7 @@ const Page = () => {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        'http://localhost:3000/api/projects/experimental/read'
+        `${BASE_URL}/api/projects/experimental/read`
       );
       if (!response.ok) {
         throw new Error('Failed to fetch data');
