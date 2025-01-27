@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/navigation';
+import { BASE_URL } from '@/lib/base';
 
 const HeaderExp = () => {
   const router = useRouter();
@@ -45,7 +46,7 @@ const HeaderExp = () => {
       {windowWidth > 500 && <h1>My Experimental Projects</h1>}
       <div style={{ display: 'flex', gap: '10px' }}>
       {/* Button for Home Page */}
-      <Button onClick={() => router.push('http://localhost:3000')}>
+      <Button onClick={() => router.push(`${BASE_URL}`)}>
         Home
       </Button>
 
@@ -54,8 +55,8 @@ const HeaderExp = () => {
         onClick={() =>
           router.push(
             windowWidth < 600
-              ? 'http://localhost:3000/projectsM/main-projects'
-              : 'http://localhost:3000/projects/main-projects'
+              ? `${BASE_URL}/projectsM/main-projects`
+              : `${BASE_URL}/projects/main-projects`
           )
         }
         style={{

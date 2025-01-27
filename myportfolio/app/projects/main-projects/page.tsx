@@ -6,6 +6,7 @@ import HeaderMain from '@/components/HeaderMain';
 import { useRouter } from 'next/navigation';
 import { Tour } from 'antd';
 import type { TourProps } from 'antd';
+import { BASE_URL } from '@/lib/base';
 import '@ant-design/v5-patch-for-react-19';
 
 type ProjectData = {
@@ -69,7 +70,7 @@ const Page = () => {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        'http://localhost:3000/api/projects/main/read'
+        `${BASE_URL}/api/projects/main/read`
       );
       if (!response.ok) {
         throw new Error('Failed to fetch data');

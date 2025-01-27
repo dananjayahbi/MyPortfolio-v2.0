@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/navigation';
 import { QuestionCircleOutlined } from '@ant-design/icons';
+import { BASE_URL } from '@/lib/base';
 
 type HeaderMainProps = {
   homeButtonRef: React.RefObject<HTMLButtonElement>;
@@ -58,14 +59,14 @@ const HeaderMain: React.FC<HeaderMainProps> = ({
       {windowWidth > 500 && <h1>My Main Projects</h1>}
       <div style={{ display: 'flex', gap: '10px' }}>
         {/* ✅ Conditional rendering for the "?" button */}
-        {windowWidth > 600 && currentPath !== 'http://localhost:3000/projectsM/main-projects' && (
+        {windowWidth > 600 && currentPath !== `${BASE_URL}/projectsM/main-projects` && (
           <Button onClick={onTourStart}>
             <QuestionCircleOutlined /> Help
           </Button>
         )}
 
         {/* Button for Home Page */}
-        <Button ref={homeButtonRef} onClick={() => router.push('http://localhost:3000')}>
+        <Button ref={homeButtonRef} onClick={() => router.push(`${BASE_URL}`)}>
           Home
         </Button>
 
@@ -75,8 +76,8 @@ const HeaderMain: React.FC<HeaderMainProps> = ({
           onClick={() =>
             router.push(
               windowWidth < 600
-                ? 'http://localhost:3000/projectsM/exp-projects'
-                : 'http://localhost:3000/projects/exp-projects'
+                ? `${BASE_URL}/projectsM/exp-projects`
+                : `${BASE_URL}/projects/exp-projects`
             )
           }
           style={{

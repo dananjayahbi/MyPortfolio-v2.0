@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { Button } from 'antd';
 import { useRouter } from 'next/navigation';
 import { Send } from 'lucide-react';
+import { BASE_URL } from '@/lib/base';
 
 type ProjectData = {
   id: string;
@@ -36,7 +37,7 @@ const ProjectsM = ({ windowWidth }: { windowWidth: number }) => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          'http://localhost:3000/api/projects/main/read'
+          `${BASE_URL}/api/projects/main/read`
         );
         const data: ProjectData[] = await response.json();
         sessionStorage.setItem('projects', JSON.stringify(data));
