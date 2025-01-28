@@ -1,11 +1,12 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import { Card as ShadcnCard } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Background from '@/public/images/background.jpg';
 import me from '@/public/images/me.png';
 import { Download, Send, Github, Facebook, Linkedin } from 'lucide-react';
+import { BASE_URL } from '@/lib/base';
 
 type InfoCardMProps = {
   scrollToContact: () => void;
@@ -21,12 +22,13 @@ const InfoCard: React.FC<InfoCardMProps> = ({ scrollToContact }) => {
   const author = content.author || { name: 'Unknown', post: 'No Title' };
 
   // ✅ Corrected: Using static file path for public folder
-  const handleDownloadCV = () => {
-    const cvPath = '/files/CV.pdf'; // Direct public path reference
-    const link = document.createElement('a');
-    link.href = cvPath;
-    link.download = 'CV.pdf'; // ✅ File will be named as CV.pdf when downloaded
-    link.click();
+  const handleDownloadCV = async () => {
+    try {
+        window.open(`${BASE_URL}/files/cv.pdf`);
+    } catch (error) {
+      console.error('Error downloading CV:', error);
+      alert('Failed to download CV. Please try again.');
+    }
   };
 
   return (

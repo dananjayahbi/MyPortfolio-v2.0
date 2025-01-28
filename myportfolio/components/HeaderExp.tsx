@@ -43,7 +43,7 @@ const HeaderExp = () => {
       boxShadow: '0 2px 5px rgba(0,0,0,0.3)',
       }}
     >
-      {windowWidth > 500 && <h1>My Experimental Projects</h1>}
+      {windowWidth > 500 && <h1>My Experimental Projects and Testings</h1>}
       <div style={{ display: 'flex', gap: '10px' }}>
       {/* Button for Home Page */}
       <Button onClick={() => router.push(`${BASE_URL}`)}>

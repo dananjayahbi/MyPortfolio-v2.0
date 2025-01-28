@@ -1,7 +1,7 @@
 // "use client";
 
 import React, { useEffect, useState } from 'react';
-import { Button } from 'antd';
+import { Button, ConfigProvider } from 'antd';
 import { useRouter } from 'next/navigation';
 import { Send } from 'lucide-react';
 import { BASE_URL } from '@/lib/base';
@@ -35,9 +35,7 @@ const Projects = ({ windowWidth }: { windowWidth: number }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          `${BASE_URL}/api/projects/main/read`
-        );
+        const response = await fetch(`${BASE_URL}/api/projects/main/read`);
         const data: ProjectData[] = await response.json();
         sessionStorage.setItem('projects', JSON.stringify(data));
 
@@ -69,7 +67,7 @@ const Projects = ({ windowWidth }: { windowWidth: number }) => {
   const hexagonStyle: React.CSSProperties = {
     width: '220px',
     height: '250px',
-    backgroundColor: '#c3c3e6',
+    backgroundColor: '#FC9C36',
     clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
     position: 'absolute',
     transition: 'transform 0.3s, background-color 0.3s',
@@ -87,7 +85,7 @@ const Projects = ({ windowWidth }: { windowWidth: number }) => {
 
   // Hover effect style
   const hexagonHoverStyle: React.CSSProperties = {
-    backgroundColor: '#f6b846',
+    backgroundColor: '#FC9C36',
     opacity: 0.7,
     transform: 'scale(1.05)',
     color: 'white',
@@ -133,14 +131,29 @@ const Projects = ({ windowWidth }: { windowWidth: number }) => {
             {hoveredHexagon === index ? (
               <div>
                 <p>{hexagonDescriptions[index]}</p>
-                <Button
-                  type="primary"
-                  onClick={() => handleNavigate(projects[index])}
-                  style={{ marginTop: "10px" }}
+                <ConfigProvider
+                  theme={{
+                    components: {
+                      Button: {
+                        defaultBg: '#FDB05E',
+                        defaultColor: '#fff',
+                        defaultBorderColor: '#DD7403',
+                        defaultHoverBg: '#DD7403',
+                        defaultHoverBorderColor: '#DD7403',
+                        defaultHoverColor: '#fff',
+                      },
+                    },
+                  }}
                 >
-                  View
-                  <Send style={{ marginTop: '2px' }} size={12} />
-                </Button>
+                  <Button
+                    type="default"
+                    onClick={() => handleNavigate(projects[index])}
+                    style={{ marginTop: '10px' }}
+                  >
+                    View
+                    <Send style={{ marginTop: '2px' }} size={12} />
+                  </Button>
+                </ConfigProvider>
               </div>
             ) : (
               title

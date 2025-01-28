@@ -30,13 +30,17 @@ const ProjectPage = () => {
   useEffect(() => {
     const fetchProject = async () => {
       try {
-        const response = await fetch(`${BASE_URL}/api/projects/main/${projectId}`);
+        const response = await fetch(
+          `${BASE_URL}/api/projects/main/${projectId}`
+        );
         if (response.ok) {
           const data = await response.json();
           setProject(data);
         } else {
           console.log('Project not found in main, trying experimental');
-          const experimentalResponse = await fetch(`${BASE_URL}/api/projects/experimental/${projectId}`);
+          const experimentalResponse = await fetch(
+            `${BASE_URL}/api/projects/experimental/${projectId}`
+          );
           if (!experimentalResponse.ok) {
             throw new Error('Project not found in both main and experimental');
           }
@@ -55,7 +59,9 @@ const ProjectPage = () => {
     }
   }, [projectId]);
 
-  const antIcon = <LoadingOutlined style={{ fontSize: 48, color: '#f6b846' }} spin />;
+  const antIcon = (
+    <LoadingOutlined style={{ fontSize: 48, color: '#f6b846' }} spin />
+  );
 
   if (loading) {
     return (
@@ -75,7 +81,7 @@ const ProjectPage = () => {
       <HeaderProjectInfo />
 
       {/* Unified Scrollable Content Section */}
-      <div className="flex-1 overflow-y-auto pt-[60px] px-6 md:px-12 space-y-12">
+      <div className="flex-1 overflow-y-auto pt-[60px] px-6 md:px-12 space-y-12 mt-10">
         {/* Project Info Section */}
         <div className="border-b border-gray-700 pb-12">
           <InfoCardLeft project={project} />
@@ -83,9 +89,11 @@ const ProjectPage = () => {
 
         {/* Image Section with Mobile Specific Grid */}
         <div>
-          <h2 className="text-2xl md:text-3xl font-bold text-yellow-400 mb-6">Samples</h2>
+          <h2 className="text-2xl md:text-3xl font-bold text-yellow-400 mb-6">
+            Samples
+          </h2>
           {/* Conditional rendering for mobile optimization */}
-          {typeof window !== "undefined" && window.innerWidth < 768 ? (
+          {typeof window !== 'undefined' && window.innerWidth < 768 ? (
             <ImageGridM imageUrls={project.screenshots} />
           ) : (
             <ImageGrid imageUrls={project.screenshots} />
