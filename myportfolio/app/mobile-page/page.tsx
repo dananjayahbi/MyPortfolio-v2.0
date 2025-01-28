@@ -16,6 +16,7 @@ import Education from '@/components/sections/Education';
 import Projects from '@/components/sections/Projects';
 import ProjectsM from '@/components/sections/ProjectsM';
 import ContactMe from '@/components/sections/ContactMe';
+import Footer from '@/components/sections/Footer';
 
 export default function MobilePage() {
   const aboutRef = useRef<HTMLDivElement | null>(null);
@@ -279,6 +280,9 @@ export default function MobilePage() {
           <ContactMe windowWidth={windowWidth} />
         </motion.section>
       </div>
+      
+      {/* ✅ Footer */}
+      <Footer />
     </div>
   );
 }

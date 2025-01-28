@@ -94,6 +94,7 @@ const Skills = ({ windowWidth }: { windowWidth: number }) => {
                 <motion.div
                   whileHover={{ scale: 1.1 }}
                   transition={{ type: 'spring', stiffness: 500 }}
+                  style={{ display: 'flex', justifyContent: 'center' }}
                 >
                   <List.Item>
                     <Card
@@ -118,7 +119,7 @@ const Skills = ({ windowWidth }: { windowWidth: number }) => {
                         level={5}
                         style={{
                           color: '#fff',
-                          fontSize: windowWidth < 550 ? '10px' : '16px',
+                          fontSize: windowWidth < 550 ? '8px' : '12px',
                         }}
                       >
                         {technology.name}

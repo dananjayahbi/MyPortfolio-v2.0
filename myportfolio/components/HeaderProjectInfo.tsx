@@ -2,6 +2,7 @@
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { useRouter } from 'next/navigation';
+import { BASE_URL } from '@/lib/base';
 
 const HeaderProjectInfo = () => {
   const router = useRouter();
@@ -27,7 +28,7 @@ const HeaderProjectInfo = () => {
       <div style={{ display: 'flex', gap: '10px' }}>
         {/* Button for Home */}
         <Button
-          onClick={() => router.push('http://localhost:3000')}
+          onClick={() => router.push(`${BASE_URL}`)}
           style={{
             backgroundColor: '#f6b846',  // Highlighted button color
             color: '#000',               // Black text for contrast

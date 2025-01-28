@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import HeaderExp from '@/components/HeaderExp';
 import { Button, Card, Spin, ConfigProvider } from 'antd';
-import { Send } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
 import { LoadingOutlined } from '@ant-design/icons';
 import placeholder from '@/public/images/image-placeholder.png';
 import { BASE_URL } from '@/lib/base';
@@ -64,16 +64,12 @@ const page = () => {
     }
   };
 
-  // ✅ Find a Thumbnail in the Screenshots (or Return Custom Placeholder)
+  // ✅ Get the First Screenshot as the Thumbnail (or Return Custom Placeholder)
   const getThumbnail = (screenshots: string[]) => {
     if (!screenshots || screenshots.length === 0) {
-      return placeholder.src;
+      return placeholder.src; // ✅ Corrected usage for imported images
     }
-    return (
-      screenshots.find((screenshot) =>
-        screenshot.toLowerCase().includes('thumbnail')
-      ) || placeholder.src
-    );
+    return screenshots[0];
   };
 
   // ✅ Load More Projects
@@ -102,8 +98,11 @@ const page = () => {
           {/* ✅ Experiment Project Cards */}
           <div className="grid grid-cols-1 gap-6 p-6 mt-16 justify-items-center">
             {windowWidth < 500 && (
-              <p className="text-2xl">My Experiment Projects</p>
+              <p className="text-2xl">My Experiment Projects and Testings</p>
             )}
+            <p style={{ color: '#fff', fontSize: '10px', marginTop: '-20px' }}>
+              (View on a computer to get a better UI experience!)
+            </p>
             {visibleProjects.map((project, index) => {
               const thumbnail = getThumbnail(project.screenshots);
               return (
@@ -157,8 +156,7 @@ const page = () => {
                       onClick={() => navigateToProjectPage(project)}
                       style={{ color: '#000' }}
                     >
-                      View Project{' '}
-                      <Send size={18} style={{ marginLeft: '8px' }} />
+                      View Project <ExternalLink size={15} />
                     </Button>
                   </ConfigProvider>
                 </Card>
