@@ -22,13 +22,14 @@ const InfoCard: React.FC<InfoCardMProps> = ({ scrollToContact }) => {
   const author = content.author || { name: 'Unknown', post: 'No Title' };
 
   // ✅ Corrected: Using static file path for public folder
-  const handleDownloadCV = async () => {
-    try {
-        window.open(`${BASE_URL}/files/cv.pdf`);
-    } catch (error) {
-      console.error('Error downloading CV:', error);
-      alert('Failed to download CV. Please try again.');
-    }
+  const handleDownloadCV = () => {
+    const cvUrl = "/files/cv.pdf"; // ✅ Direct path to public folder
+    const link = document.createElement("a");
+    link.href = cvUrl;
+    link.download = "CV.pdf"; // ✅ Forces download instead of opening in browser
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   return (

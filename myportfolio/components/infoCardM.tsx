@@ -21,11 +21,13 @@ const InfoCardM: React.FC<InfoCardMProps> = ({ scrollToContact }) => {
 
   // ✅ Corrected: Using static file path for public folder
   const handleDownloadCV = () => {
-    const cvPath = '/files/CV.pdf'; // Direct public path reference
-    const link = document.createElement('a');
-    link.href = cvPath;
-    link.download = 'CV.pdf'; // ✅ File will be named as CV.pdf when downloaded
+    const cvUrl = "/files/cv.pdf"; // ✅ Direct path to public folder
+    const link = document.createElement("a");
+    link.href = cvUrl;
+    link.download = "CV.pdf"; // ✅ Forces download instead of opening in browser
+    document.body.appendChild(link);
     link.click();
+    document.body.removeChild(link);
   };
 
   return (
