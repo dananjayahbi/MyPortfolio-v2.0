@@ -16,26 +16,25 @@ type InfoCardLeftProps = {
 
 const InfoCardLeft: React.FC<InfoCardLeftProps> = ({ project }) => {
   return (
-    <div className="relative flex justify-center items-center h-full w-full max-h-screen">
+    <div className="relative flex justify-center items-center w-full">
       {/* Main Project Details Card */}
       <ShadcnCard
-        className="bg-[#222222] text-white rounded-xl overflow-hidden border-none z-10 p-6 flex flex-col justify-center"
+        className="bg-[#222222] text-white rounded-xl overflow-hidden border-none z-10 p-6 flex flex-col w-full max-w-2xl"
         style={{
-          aspectRatio: '1 / 1', // Maintains 1:1 aspect ratio
-          maxHeight: '95vh', // Prevents exceeding 95% of viewport height
-          maxWidth: '100%', // Prevents exceeding the left-side container
+          minHeight: 'auto', // Auto height based on content
+          width: '100%', // Responsive width
         }}
       >
         <h2 className="text-3xl font-bold text-yellow-400 mb-4">
           {project.title}
         </h2>
-        <p className="text-lg mb-6">{project.description}</p>
+        <p className="text-lg mb-6 leading-relaxed">{project.description}</p>
 
-        {/* GitHub Link - Using Shadcn Button for Better Visibility */}
+        {/* GitHub Link Button */}
         <Button
           asChild
           variant="default"
-          className="bg-yellow-400 text-black font-semibold hover:bg-yellow-500 transition-all duration-300 flex items-center gap-2 py-3 px-4 rounded-lg mt-4"
+          className="bg-yellow-400 text-black font-semibold hover:bg-yellow-500 transition-all duration-300 flex items-center gap-2 py-3 px-4 rounded-lg mt-4 self-start"
         >
           <a
             href={project.githubLink}
