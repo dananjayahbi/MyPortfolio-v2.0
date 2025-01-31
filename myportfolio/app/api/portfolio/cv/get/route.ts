@@ -11,8 +11,8 @@ export async function OPTIONS() {
 // GET method to fetch the CV file
 export async function GET(req: NextRequest) {
   try {
-    // Corrected path to match public file serving
-    const filePath = path.join("public", "files", "cv.pdf");
+    // Correct path for file storage (NOT inside public)
+    const filePath = path.join(process.cwd(), "private", "cv.pdf");
 
     // Check if the file exists
     try {
@@ -27,7 +27,7 @@ export async function GET(req: NextRequest) {
     // Read the file
     const fileBuffer = await fs.readFile(filePath);
 
-    // Serve the file as a response
+    // Serve the file as a downloadable response
     return new NextResponse(fileBuffer, {
       status: 200,
       headers: {

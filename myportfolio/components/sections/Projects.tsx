@@ -130,7 +130,10 @@ const Projects = ({ windowWidth }: { windowWidth: number }) => {
           >
             {hoveredHexagon === index ? (
               <div>
-                <p>{hexagonDescriptions[index]}</p>
+                <p>
+                  {hexagonDescriptions[index].split(' ').slice(0, 10).join(' ')}
+                  {hexagonDescriptions[index].split(' ').length > 10 && '...'}
+                </p>
                 <ConfigProvider
                   theme={{
                     components: {
