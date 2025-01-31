@@ -76,23 +76,22 @@ const ProjectPage = () => {
   }
 
   return (
-    <div className="h-screen w-screen overflow-y-auto bg-[#121212] text-white relative flex flex-col">
-      {/* Fixed Header Section */}
+    <div className="w-screen min-h-screen overflow-y-auto bg-[#121212] text-white flex flex-col">
+      {/* Fixed Header */}
       <HeaderProjectInfo />
-
-      {/* Unified Scrollable Content Section */}
-      <div className="flex-1 overflow-y-auto pt-[60px] px-6 md:px-12 space-y-12 mt-10">
-        {/* Project Info Section */}
-        <div className="border-b border-gray-700 pb-12">
+  
+      {/* Content Section */}
+      <div className="flex-1 px-6 md:px-12 space-y-12 mt-14">
+        {/* Ensure This Section Grows */}
+        <div className="border-b border-gray-700 pb-12 flex flex-col">
           <InfoCardLeft project={project} />
         </div>
-
-        {/* Image Section with Mobile Specific Grid */}
+  
+        {/* Image Section */}
         <div>
           <h2 className="text-2xl md:text-3xl font-bold text-yellow-400 mb-6">
             Samples
           </h2>
-          {/* Conditional rendering for mobile optimization */}
           {typeof window !== 'undefined' && window.innerWidth < 768 ? (
             <ImageGridM imageUrls={project.screenshots} />
           ) : (
@@ -101,7 +100,7 @@ const ProjectPage = () => {
         </div>
       </div>
     </div>
-  );
+  );  
 };
 
 export default ProjectPage;
