@@ -109,11 +109,12 @@ const ProjectsM = ({ windowWidth }: { windowWidth: number }) => {
   };
 
   const handleNavigate = (project?: ProjectData) => {
-    if (windowWidth < 750) {
-      router.push('/projectsM/main-projects');
+    if (windowWidth < 750 && project) {
+      const projectId = project.id;
+      window.open(`/projectsM/${projectId}`, '_blank');;
     } else if (project) {
       const projectId = project.id;
-      window.open(`/projects/${projectId}`, '_blank');
+      window.open(`/projectsM/${projectId}`, '_blank');
     } else {
       router.push('/projects/main-projects');
     }
