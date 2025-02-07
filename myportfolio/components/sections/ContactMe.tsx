@@ -38,7 +38,7 @@ const ContactMe = ({ windowWidth }: { windowWidth: number }) => {
         >
           <img
             src="https://img.icons8.com/lollipop/50/new-post.png"
-            alt="facebook"
+            alt="Email"
             width="30px"
           />{' '}
           <strong>Email:</strong>
@@ -61,7 +61,7 @@ const ContactMe = ({ windowWidth }: { windowWidth: number }) => {
         >
           <img
             src="https://img.icons8.com/doodle/48/phone--v1.png"
-            alt="facebook"
+            alt="phone"
             width="40px"
           />{' '}
           <strong>Phone:</strong>
@@ -84,7 +84,7 @@ const ContactMe = ({ windowWidth }: { windowWidth: number }) => {
         >
           <img
             src="https://img.icons8.com/color/480/linkedin.png"
-            alt="facebook"
+            alt="linkedin"
             width="30px"
           />{' '}
           <strong>LinkedIn:</strong>
@@ -109,7 +109,7 @@ const ContactMe = ({ windowWidth }: { windowWidth: number }) => {
         >
           <img
             src="https://img.icons8.com/3d-fluency/94/github.png"
-            alt="facebook"
+            alt="github"
             width="30px"
           />{' '}
           <strong>GitHub:</strong>

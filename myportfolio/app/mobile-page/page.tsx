@@ -15,7 +15,7 @@ import Experience from '@/components/sections/Experience';
 import Education from '@/components/sections/Education';
 import Projects from '@/components/sections/Projects';
 import ProjectsM from '@/components/sections/ProjectsM';
-import ContactMe from '@/components/sections/ContactMe';
+import ContactMeM from '@/components/sections/ContactMeM';
 import Footer from '@/components/sections/Footer';
 
 export default function MobilePage() {
@@ -277,7 +277,7 @@ export default function MobilePage() {
           variants={animationVariants}
         >
           <h2 className="text-3xl font-bold text-yellow-400 mb-4">Contact</h2>
-          <ContactMe windowWidth={windowWidth} />
+          <ContactMeM />
         </motion.section>
       </div>
       
