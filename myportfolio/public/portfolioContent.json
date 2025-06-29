@@ -12,7 +12,7 @@
   },
   "aboutMe": {
     "title": "About Me",
-    "description": "I am a passionate Full-Stack Developer who has been working on websites for more than three years. Currently, I am an undergraduate student at SLIIT University pursuing a degree in information technology (Final Year). I am an active learner who enjoys experimenting with new tools and frameworks to expand my skill set. I am experienced in technologies such as React, Node.js, MongoDB, Python, Flask, Next.js, and many more. My abilities to solve problems, think creatively and communicate clearly allow me to simplify difficult ideas and make valuable contributions to group projects. Whether delving into front-end or back-end work, I welcome all opportunities to take my abilities to new heights by accepting challenges that push me beyond what I already know. As a self-starter with a propensity for rapid learning, I readily adapt to emerging technologies and focus my efforts on delivering innovative solutions that create real impact. My goal remains one of continuous growth both as a professional and as a thinker, while exploring possibilities to contribute my talents to meaningful projects and new opportunities within the exciting technology industry."
+    "description": "I am a passionate Full-Stack Developer who has been working on websites for more than three years. Currently, I finished my degree at SLIIT and expecting the graduation soon. I am an active learner who enjoys experimenting with new tools and frameworks to expand my skill set. I am experienced in technologies such as React, Node.js, MongoDB, Python, Flask, Next.js, and many more. My abilities to solve problems, think creatively and communicate clearly allow me to simplify difficult ideas and make valuable contributions to group projects. Whether delving into front-end or back-end work, I welcome all opportunities to take my abilities to new heights by accepting challenges that push me beyond what I already know. As a self-starter with a propensity for rapid learning, I readily adapt to emerging technologies and focus my efforts on delivering innovative solutions that create real impact. My goal remains one of continuous growth both as a professional and as a thinker, while exploring possibilities to contribute my talents to meaningful projects and new opportunities within the exciting technology industry."
   },
   "skills": {
     "title": "Skills",
@@ -46,7 +46,7 @@
           },
           {
             "name": "Ant Design",
-            "image": "https://static-00.iconduck.com/assets.00/ant-design-icon-2048x2046-tx16mhk6.png"
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyycnVTESq2qM_O2pdI704_NC1YwQz_fK27w_aU2X2ZEQEeZaVn0sNYyqSf0hWJnYr-c0&usqp=CAU"
           },
           {
             "name": "Tailwind",
@@ -54,7 +54,7 @@
           },
           {
             "name": "ElectronJS",
-            "image": "https://static-00.iconduck.com/assets.00/electron-icon-2048x2048-ob62t2la.png"
+            "image": "https://miro.medium.com/v2/resize:fit:1200/1*O6KluMvEBZ1cBL3EPo4tig.png"
           },
           {
             "name": "TypeScript",
@@ -147,12 +147,12 @@
   "currentlyIAm": {
     "title": "Currently I Am",
     "texts": [
-      "Trying to complete my University Research Project on Machine Learning and Deep Learning.",
+      "Expecting the graduation at SLIIT.",
       "Working on a personal project to improve my skills.",
       "Learning AI models fine-tuning.",
       "Learning about developing installable desktop applications using Electron.js and python tkinter.",
-      "Trying to create standalone portable server applications using Node.js and Express.js for small-scale projectsand my personal projects.",
-      "Learning more about TypeScript to level up it to my satisfaction level.",
+      "Trying to create standalone portable server applications using Node.js and Express.js for small-scale projects and my personal projects.",
+      "Learning more about TypeScript and NextJS to level up it to my satisfaction level.",
       "Trying to use AI models in my personal projects to improve the user experience (There are some projects in my github repositories)."
     ]
   },
@@ -170,7 +170,7 @@
   "funFacts": {
     "title": "Fun Facts",
     "texts": [
-      "Maintaining a playground repository to test my crazy ideas.",
+      "Maintaining a playground repository(s) to test my crazy ideas.",
       "I am a huge fan of the Marvel Cinematic Universe.",
       "I want every work as perfect as possible."
     ]
@@ -181,14 +181,14 @@
       "Worked as an Intern Software Engineer at a software company called \"Intrada Technologies\" for 6 months.",
       "Freelancing for nearly 2 years on Fiverr.",
       "Working on my personal projects (Feel free to check my GitHub repositories).",
-      "Working on my University Final Year Research Project.",
+      "Contributed on my University Final Year Research Project.",
       "Developing WordPress websites for clients (Not a thing I usually do, but I have done some projects for clients)."
     ]
   },
   "education": {
     "title": "Education",
     "texts": [
-      "Currently an undergraduate student at SLIIT university pursuing a degree in Information Technology."
+      "Finished the Bachelor's degree in Information Technology at SLIIT and expecting graduation soon."
     ]
   },
   "contact": {

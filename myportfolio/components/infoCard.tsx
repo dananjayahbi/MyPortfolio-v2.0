@@ -5,7 +5,7 @@ import { Card as ShadcnCard } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Background from '@/public/images/background.jpg';
 import me from '@/public/images/me.png';
-import { Download, Send, Github, Facebook, Linkedin } from 'lucide-react';
+import { Download, Send, Github, Facebook, Linkedin, FolderSearch } from 'lucide-react';
 import { BASE_URL } from '@/lib/base';
 
 type InfoCardMProps = {
@@ -91,8 +91,17 @@ const InfoCard: React.FC<InfoCardMProps> = ({ scrollToContact }) => {
             </a>
           </div>
 
+          {/* Explore Projects Button */}
+          <Button 
+            variant="default"
+            className="mt-5 text-yellow-400 bg-transparent border border-yellow-400 hover:bg-yellow-400 hover:text-gray-900 opacity-80 hover:opacity-100 flex items-center gap-2"
+            onClick={() => window.open('/projects/main-projects', '_blank')}
+          >
+            <FolderSearch size={18} /> Explore Projects
+          </Button>
+
           {/* Fading Divider Lines */}
-          <div className="relative flex items-center justify-center w-full mt-20 py-4">
+          <div className="relative flex items-center justify-center w-full mt-7 py-4">
             {/* Horizontal Line */}
             <div className="absolute inset-0 flex bottom-10 mb-2 items-center justify-center pointer-events-none">
               <div className="w-full h-px bg-gradient-to-r from-transparent via-gray-500 to-transparent opacity-50"></div>
