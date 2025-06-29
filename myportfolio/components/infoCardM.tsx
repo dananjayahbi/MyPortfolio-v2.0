@@ -4,7 +4,7 @@ import { Card as ShadcnCard } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Background from '@/public/images/background.jpg';
 import me from '@/public/images/me.png';
-import { Download, Send, Github, Facebook, Linkedin } from 'lucide-react';
+import { Download, Send, Github, Facebook, Linkedin, FolderSearch } from 'lucide-react';
 
 type InfoCardMProps = {
   scrollToContact: () => void;
@@ -87,8 +87,17 @@ const InfoCardM: React.FC<InfoCardMProps> = ({ scrollToContact }) => {
             </a>
           </div>
 
+          {/* Explore Projects Button */}
+          <Button 
+            variant="default"
+            className="mt-3 text-yellow-400 bg-transparent border border-yellow-400 hover:bg-yellow-400 hover:text-gray-900 opacity-80 hover:opacity-100 flex items-center gap-1"
+            onClick={() => window.open('/projectsM/main-projects', '_blank')}
+          >
+            <FolderSearch size={14} /> Projects
+          </Button>
+
           {/* Divider */}
-          <div className="w-full border-t border-gray-600 opacity-50 mt-16"></div>
+          <div className="w-full border-t border-gray-600 opacity-50 mt-6"></div>
 
           {/* Button Section */}
           <div className="flex items-center mt-2 justify-center w-full gap-2 z-10">
